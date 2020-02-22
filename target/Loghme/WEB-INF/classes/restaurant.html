@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurant</title>
+    <style>
+        img {
+        	width: 50px;
+        	height: 50px;
+        }
+        li {
+            display: flex;
+            flex-direction: row;
+        	padding: 0 0 5px;
+        }
+        div, form {
+            padding: 0 5px
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li th:text="'id: ' + ${restaurant.id}">id: 1</li>
+        <li th:text="'name: ' + ${restaurant.name}">name: restaurant 1 name</li>
+        <li th:text="'location: (' + ${restaurant.location.x} + ',' + ${restaurant.location.x} + ')'">location: (3, 5)</li>
+        <li>logo: <img th:src="${restaurant.logo}" alt="logo"></li>
+        <li>menu:
+        	<ul th:each="food : ${restaurant.menu}">
+        		<li>
+                    <img th:src="${food.image}" alt="logo">
+                    <div th:text="${food.name}">food1</div>
+                    <div th:text="${food.price} + 'Toman'">20000 Toman</div>
+                    <form th:action="${url}" method="POST">
+                        <input type="hidden" id="name" name="name" th:value="${food.name}" />
+                        <input type="hidden" id="restaurantName" name="restaurantName" th:value="${restaurant.name}" />
+                        <input type="hidden" id="price" name="price" th:value="${food.price}" />
+                        <button type="submit">addToCart</button>
+                    </form>
+                </li>
+        	</ul>
+        </li>
+    </ul>
+</body>
+</html>

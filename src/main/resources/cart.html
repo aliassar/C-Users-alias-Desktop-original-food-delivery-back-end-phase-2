@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <style>
+        li, div, form {
+        	padding: 5px
+        }
+    </style>
+</head>
+<body>
+    <div th:text="${cart[0].restaurantName}">restaurant name</div>
+    <ul th:each="order :${cart}">
+        <li th:text="${order.foodName} + ': ' + ${order.NumOfOrder}">food 1:‌ 2</li>
+    </ul>
+    <form th:action="${url}" method="POST">
+        <button type="submit">finalize</button>
+    </form>
+</body>
+</html>

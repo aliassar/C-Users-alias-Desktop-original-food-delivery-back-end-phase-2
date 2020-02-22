@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    <style>
+        li {
+        	padding: 5px
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>id: 1</li>
+        <li th:text="'full name: ' + ${user.fname} +' '+ ${user.lname}">full name: Ehsan KhamesPanah</li>
+        <li th:text="'phone number: '+ ${user.phoneNumber}">phone number: +989123456789</li>
+        <li th:text="'email: '+${user.email}">email: ekhamespanah@yahoo.com</li>
+        <li th:text="'credit: '+${user.wallet}+'Toman'">credit: 50000 Toman</li>
+        <form th:action="${url}" method="POST">
+            <button type="submit">increase</button>
+            <label>
+                <input type="text" name="credit" value="" />
+            </label>
+        </form>
+    </ul>
+</body>
+</html>

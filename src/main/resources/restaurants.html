@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Restaurants</title>
+    <style>
+        table {
+            text-align: center;
+            margin: auto;
+        }
+        th, td {
+            padding: 5px;
+            text-align: center;
+        }
+        .logo{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>id</th>
+            <th>logo</th>
+            <th>name</th>
+            <th>description</th>
+        </tr>
+        <tr th:each="restaurant,iterStat : ${restaurants}">
+            <td th:text="${restaurant.id}">1</td>
+            <td><img class="logo" th:src="${restaurant.logo}" alt="logo"></td>
+            <td  th:text="${restaurant.name}">restaurant 1 name</td>
+            <td  th:text="${restaurant.description}">luxury</td>
+        </tr>
+    </table>
+</body>
+</html>
