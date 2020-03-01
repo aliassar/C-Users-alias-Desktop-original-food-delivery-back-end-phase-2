@@ -16,11 +16,42 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 
 public class Loghme {
+    private static Loghme instance;
     private ArrayList<Restaurant> AllRestaurants;
     private User AppUser;
+
+    public static Loghme getInstance() {
+        if (instance == null)
+            try {
+                instance = new Loghme();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+            //instance = new Loghme();
+        return instance;
+    }
+
+    private Loghme() throws IOException{
+        ObjectMapper mapper = new ObjectMapper();
+        this.AllRestaurants =  mapper.readValue(new URL("http://138.197.181.131:8080/restaurants")
+                , new TypeReference<List<Restaurant>>() {
+                });
+        User user = new User("H", "M", "+0", "test@test.com", 2500000);
+        ArrayList<Order> NewOrders = new ArrayList<>();
+        user.setOrders(NewOrders);
+        this.AppUser = user;
+
+    }
+
+
+
+
+
+
 
 
 
