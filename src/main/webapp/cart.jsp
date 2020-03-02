@@ -15,7 +15,7 @@
 <div><c:out value="${cart.orders[0].restaurantName}"/></div>
 <ul>
     <c:forEach var="order" items="${cart.orders}">
-        <li><c:out value="${order.foodName}"/>: <c:out value="${order.NumOfOrder}"/></li>
+        <li><c:out value="${order.foodName}"/>: <c:out value="${order.numOfOrder}"/></li>
     </c:forEach>
 </ul>
 <form action="/loghme_war_exploded/order" method="POST">

@@ -11,19 +11,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 
 
-@WebServlet({"/restaurant", "/restaurant/*"})
+@WebServlet({"/restaurants", "/restaurants/*"})
 public class RestaurantServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         String pathInfo = request.getPathInfo();
+        Loghme loghme = Loghme.getInstance();
         if (pathInfo == null) {
-            request.setAttribute("error", "Enter a valid id");
-            request.getRequestDispatcher("/exception.jsp").forward(request, response);
+            ArrayList<Restaurant> restaurants = loghme.getNearbyRestaurants();
+            request.setAttribute("restaurants", restaurants);
+            request.getRequestDispatcher("/restaurants.jsp").forward(request, response);
         } else {
-            Loghme loghme = Loghme.getInstance();
 
             String[] pathParts = pathInfo.split("/");
             String restaurantId = pathParts[1];

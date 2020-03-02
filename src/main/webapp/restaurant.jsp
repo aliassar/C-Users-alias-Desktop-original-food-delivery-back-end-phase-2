@@ -23,7 +23,7 @@
 <body>
 <ul>
     <li>id: <c:out value="${restaurant.id}"/></li>
-    <li>name: <c:out value="${restaurant.id}"/></li>
+    <li>name: <c:out value="${restaurant.name}"/></li>
     <li>location: (<c:out value="${restaurant.location.x}"/>, <c:out value="${restaurant.location.y}"/>)</li>
     <li>logo: <img src="${restaurant.logo}" alt="logo"></li>
     <li>menu:
@@ -33,7 +33,7 @@
                 <img src="${food.image}" alt="logo">
                 <div><c:out value="${food.name}"/></div>
                 <div><c:out value="${food.price}"/> Toman</div>
-                <form action="/loghme_war_exploded/order"  method="POST">
+                <form action="/loghme_war_exploded/cart"  method="POST">
                     <input type="hidden" id="name" name="name" value="${food.name}" />
                     <input type="hidden" id="restaurantName" name="restaurantName" value="${restaurant.name}" />
                     <input type="hidden" id="price" name="price" value="${food.price}" />

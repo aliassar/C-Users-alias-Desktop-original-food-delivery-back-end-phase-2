@@ -1,19 +1,8 @@
 package IE.models;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.*;
-
-
-import IE.CustomSerializer.CustomCartSerializer;
-import IE.CustomSerializer.CustomFoodSerializer;
-import IE.CustomSerializer.CustomRestaurantSerializer;
-import IE.Exceptions.DifRestaurants;
-import IE.Exceptions.NoInProcessOrder;
 import IE.Exceptions.NoOrder;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
+
+import java.util.ArrayList;
 
 
 public class User {
@@ -23,9 +12,11 @@ public class User {
     private String phoneNumber;
     private String email;
     private float wallet;
+    private Cart inProcessCart;
 
     public User(String fname, String lname, String phoneNumber, String email, float wallet) {
         this.cartsOfUser = new ArrayList<>();
+        inProcessCart = new Cart();
         this.fname = fname;
         this.lname = lname;
         this.phoneNumber = phoneNumber;
@@ -81,28 +72,24 @@ public class User {
         this.wallet = wallet;
     }
 
-    public Cart getInProcessCart() throws NoInProcessOrder, NoOrder {
-        if (cartsOfUser.size() < 1) {
-            throw new NoOrder("There are no order");
-        } else {
-            Cart lastCart = cartsOfUser.get(cartsOfUser.size() - 1);
-            if (lastCart.getStatus().equals("inProcess")) {
-                return lastCart;
-            } else {
-                throw new NoInProcessOrder("There are no in process order");
-            }
-        }
+    public Cart getInProcessCart() {
+        return inProcessCart;
     }
     public Cart getLastCart() throws NoOrder {
         if (cartsOfUser.size() < 1) {
-            throw new NoOrder("There are no order");
+            throw new NoOrder("There are no processed order");
         } else {
             return cartsOfUser.get(cartsOfUser.size() - 1);
         }
     }
-    public void newCart(Cart cart) {
+    public void clearInProcessCart() {
+        inProcessCart = new Cart();
+    }
+    public ArrayList<Cart> getCartsOfUser() {
+        return cartsOfUser;
+    }
+    public void newProcessedCart(Cart cart) {
         cartsOfUser.add(cart);
     }
-
 }
 

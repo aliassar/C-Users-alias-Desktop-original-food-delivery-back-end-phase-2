@@ -18,19 +18,15 @@ import java.util.Objects;
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         Loghme loghme = Loghme.getInstance();
         User user = loghme.getAppUser();
-        try {
-            Cart cart = user.getInProcessCart();
-            request.setAttribute("cart", cart);
-            request.getRequestDispatcher("/cart.jsp").forward(request, response);
-        } catch (NoOrder | NoInProcessOrder e) {
-            e.printStackTrace();
-            request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("/exception.jsp").forward(request, response);
-        }
+        Cart cart = user.getInProcessCart();
+        request.setAttribute("cart", cart);
+        request.getRequestDispatcher("/cart.jsp").forward(request, response);
     }
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
         Loghme loghme = Loghme.getInstance();
         String name =  request.getParameter("name");
         String restaurantName = request.getParameter("restaurantName");
@@ -44,15 +40,9 @@ public class CartServlet extends HttpServlet {
             request.getRequestDispatcher("/exception.jsp").forward(request, response);
         }
         User user = loghme.getAppUser();
-        try {
-            Cart cart = user.getInProcessCart();
-            request.setAttribute("cart", cart);
-            request.getRequestDispatcher("/cart.jsp").forward(request, response);
-        } catch (NoOrder | NoInProcessOrder e) {
-            e.printStackTrace();
-            request.setAttribute("error", e.getMessage());
-            request.getRequestDispatcher("/exception.jsp").forward(request, response);
-        }
+        Cart cart = user.getInProcessCart();
+        request.setAttribute("cart", cart);
+        request.getRequestDispatcher("/cart.jsp").forward(request, response);
     }
 }
 

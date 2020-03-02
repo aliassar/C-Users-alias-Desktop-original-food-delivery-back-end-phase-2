@@ -10,32 +10,35 @@
             text-align: center;
             margin: auto;
         }
+
         th, td {
             padding: 5px;
             text-align: center;
         }
-        .logo{
+
+        .logo {
             width: 100px;
             height: 100px;
         }
     </style>
 </head>
 <body>
-    <table>
+<table>
+    <tr>
+        <th>id</th>
+        <th>logo</th>
+        <th>name</th>
+        <th>location</th>
+    </tr>
+    <c:forEach var="restaurant" items="${restaurants}">
         <tr>
-            <th>id</th>
-            <th>logo</th>
-            <th>name</th>
-            <th>location</th>
+            <td><c:out value="${restaurant.id}"/></td>
+            <td><img class="logo" src="${restaurant.logo}" alt="logo"></td>
+            <td><c:out value="${restaurant.name}"/></td>
+            <td>(<c:out value="${restaurant.location.x}"/>, <c:out value="${restaurant.location.y}"/>)</td>
         </tr>
-        <tr>
-            <c:forEach var="restaurant" items="${restaurants}">
-                <td><c:out value="${restaurant.id}"/></td>
-                <td><img class="logo" src="${restaurant.logo}" alt="logo"></td>
-                <td><c:out value="${restaurant.name}"/></td>
-                <td>(<c:out value="${restaurant.location.x}"/>, <c:out value="${restaurant.location.y}"/>)</td>
-            </c:forEach>
-        </tr>
-    </table>
+    </c:forEach>
+
+</table>
 </body>
 </html>

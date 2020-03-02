@@ -84,45 +84,37 @@ public class Loghme {
             throw new WrongFood("no food with this name in this restaurant");
         }
 
-        boolean differentRestaurant = false;
-        try {
-            Cart inProcessCart = this.AppUser.getInProcessCart();
-            for (Order value : inProcessCart.getOrders()) {
-                if (value.getRestaurantName().equals(food.getRestaurantName())) {
-                    differentRestaurant = true;
-                    break;
-                }
+        Cart inProcessCart = this.AppUser.getInProcessCart();
+        boolean sameRestaurant = inProcessCart.getOrders().size()==0;
+        for (Order value : inProcessCart.getOrders()) {
+            if (value.getRestaurantName().equals(food.getRestaurantName())) {
+                sameRestaurant = true;
+                break;
             }
-            boolean sameFood = false;
-            for (Order order : inProcessCart.getOrders()) {
-                if (order.getFoodName().equals(food.getName())) {
-                    sameFood = true;
-                    order.AddNum();
-                    return;
-                }
+        }
+        boolean sameFood = false;
+        for (Order order : inProcessCart.getOrders()) {
+            if (order.getFoodName().equals(food.getName())) {
+                sameFood = true;
+                order.AddNum();
+                return;
             }
-            if (!sameFood) {
-                if (differentRestaurant) {
-                    Order order = new Order(food.getName(), food.getRestaurantName(), 1, food.getPrice());
-                    inProcessCart.addToOrders(order);
-                } else {
-                    throw new DifRestaurants("you can not choose different restaurant");
-                }
+        }
+        if (!sameFood) {
+            if (sameRestaurant) {
+                Order order = new Order(food.getName(), food.getRestaurantName(), 1, food.getPrice());
+                inProcessCart.addToOrders(order);
+            } else {
+                throw new DifRestaurants("you can not choose different restaurant");
             }
-        } catch (NoInProcessOrder | NoOrder noInProcessOrder) {
-            Cart newCart = new Cart();
-            newCart.setStatus("inProcess");
-            Order order = new Order(food.getName(), food.getRestaurantName(), 1, food.getPrice());
-            newCart.addToOrders(order);
-            this.AppUser.newCart(newCart);
         }
     }
 
-    public Cart getCart() throws NoInProcessOrder, NoOrder {
+    public Cart getCart() {
         return this.AppUser.getInProcessCart();
     }
 
-    public void finalizeOrder() throws IOException, NoInProcessOrder, InsufficientMoney, NoOrder {
+    public void finalizeOrder() throws IOException, InsufficientMoney {
         Cart inProcessCart = this.AppUser.getInProcessCart();
         ObjectMapper mapper = new ObjectMapper();
         float totalPrice = 0;
@@ -139,12 +131,14 @@ public class Loghme {
         System.out.println("Order recorded successfully");
         inProcessCart.setStatus("finding delivery");
         this.AppUser.setWallet(this.AppUser.getWallet() - totalPrice);
-
+        this.AppUser.newProcessedCart(inProcessCart);
+        this.AppUser.clearInProcessCart();
     }
 
-    public void increaseWallet(Float amount){
+    public void increaseWallet(Float amount) {
         this.AppUser.AddToWallet(amount);
     }
+
     public ArrayList<Restaurant> getNearbyRestaurants() {
         ArrayList<Restaurant> selectedRestaurants = new ArrayList<>();
         for (Restaurant restaurant : this.AllRestaurants) {

@@ -30,16 +30,10 @@
     <li>
         Orders :
         <ul>
-            <c:forEach var="cart" items="${user.cartsOfUser}">
-                <c:if test="${cart.status!='done'}">
-                    <c:if test="${cart.status!='inProcess'}">
-                        <c:forEach var="order" items="${cart.orders}">
-                            <li>
-                                <a href="/loghme_war_exploded/order">order id : <c:out value="${order.foodName}"/></a>
-                            </li>
-                        </c:forEach>
-                    </c:if>
-                </c:if>
+            <c:forEach var="cart" items="${cartsOfUser}" varStatus="i">
+                <li>
+                    <a href="/loghme_war_exploded/order/${i.index}">order id : <c:out value="${i.index}"/></a>
+                </li>
             </c:forEach>
         </ul>
     </li>
