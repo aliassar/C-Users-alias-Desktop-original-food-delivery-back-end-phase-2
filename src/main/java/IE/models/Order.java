@@ -1,9 +1,6 @@
 package IE.models;
 
 
-
-
-
 public class Order {
     private String foodName;
     private String restaurantName;
@@ -16,6 +13,9 @@ public class Order {
         this.restaurantName = restaurantName;
         this.numOfOrder = numOfOrder;
         this.cost = cost;
+    }
+
+    public Order() {
     }
 
     public float getCost() {

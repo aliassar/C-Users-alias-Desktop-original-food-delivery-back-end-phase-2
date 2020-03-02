@@ -8,13 +8,15 @@ import java.util.*;
 import IE.CustomSerializer.CustomCartSerializer;
 import IE.CustomSerializer.CustomFoodSerializer;
 import IE.CustomSerializer.CustomRestaurantSerializer;
+import IE.Exceptions.DifRestaurants;
+import IE.Exceptions.NoInProcessOrder;
+import IE.Exceptions.NoOrder;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 
 public class User {
-    private ArrayList<Order> orders;
     private ArrayList<Cart> CartsOfUser;
     private String fname;
     private String lname;
@@ -23,6 +25,7 @@ public class User {
     private float wallet;
 
     public User(String fname, String lname, String phoneNumber, String email, float wallet) {
+        this.CartsOfUser = new ArrayList<>();
         this.fname = fname;
         this.lname = lname;
         this.phoneNumber = phoneNumber;
@@ -33,8 +36,8 @@ public class User {
     public User() {
     }
 
-    public void AddToWallet(float amount){
-        this.wallet +=amount;
+    public void AddToWallet(float amount) {
+        this.wallet += amount;
 
     }
 
@@ -78,20 +81,27 @@ public class User {
         this.wallet = wallet;
     }
 
-    public void cleanOrders() {
-        this.orders.clear();
+    public Cart getInProcessCart() throws NoInProcessOrder, NoOrder {
+        if (CartsOfUser.size() < 1) {
+            throw new NoOrder("There are no order");
+        } else {
+            Cart lastCart = CartsOfUser.get(CartsOfUser.size() - 1);
+            if (lastCart.getStatus().equals("inProcess")) {
+                return lastCart;
+            } else {
+                throw new NoInProcessOrder("There are no in process order");
+            }
+        }
     }
-
-    public void AddToCart(Order order) {
-        this.orders.add(order);
+    public Cart getLastCart() throws NoOrder {
+        if (CartsOfUser.size() < 1) {
+            throw new NoOrder("There are no order");
+        } else {
+            return CartsOfUser.get(CartsOfUser.size() - 1);
+        }
     }
-
-    public ArrayList<Order> getOrders() {
-        return this.orders;
-    }
-
-    public void setOrders(ArrayList<Order> orders) {
-        this.orders = orders;
+    public void newCart(Cart cart) {
+        CartsOfUser.add(cart);
     }
 
 }
