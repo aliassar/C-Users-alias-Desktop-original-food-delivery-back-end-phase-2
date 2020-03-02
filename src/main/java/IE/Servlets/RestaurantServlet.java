@@ -21,7 +21,7 @@ public class RestaurantServlet extends HttpServlet {
         String pathInfo = request.getPathInfo();
         if (pathInfo == null) {
             request.setAttribute("error", "Enter a valid id");
-            request.getRequestDispatcher("/restaurant.jsp").forward(request, response);
+            request.getRequestDispatcher("/exception.jsp").forward(request, response);
         } else {
             Loghme loghme = Loghme.getInstance();
 

@@ -26,25 +26,23 @@
         <label>
             <input type="text" name="credit" value=""/>
         </label>
-    </form
-    <c:if test="${fn:length(abilities) gt 0}">
-        <li>
-            Orders :
-            <ul>
-                <c:forEach var="cart" items="${user.cartsOfUser}">
-                    <c:if test="${cart.status!='done'}">
-                        <c:if test="${cart.status!='inProcess'}">
-                            <c:forEach var="order" items="${cart.orders}">
-                                <li>
-                                    <a href="/loghme_war_exploded/order">order id : <c:out value="${order.foodName}"/></a>
-                                </li>
-                            </c:forEach>
-                        </c:if>
+    </form>
+    <li>
+        Orders :
+        <ul>
+            <c:forEach var="cart" items="${user.cartsOfUser}">
+                <c:if test="${cart.status!='done'}">
+                    <c:if test="${cart.status!='inProcess'}">
+                        <c:forEach var="order" items="${cart.orders}">
+                            <li>
+                                <a href="/loghme_war_exploded/order">order id : <c:out value="${order.foodName}"/></a>
+                            </li>
+                        </c:forEach>
                     </c:if>
-                </c:forEach>
-            </ul>
-        </li>
-    </c:if>
+                </c:if>
+            </c:forEach>
+        </ul>
+    </li>
 </ul>
 </body>
 
