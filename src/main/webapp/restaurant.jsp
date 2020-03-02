@@ -21,35 +21,29 @@
     </style>
 </head>
 <body>
-    <ul>
-        <li>id: 1</li>
-        <li>name: restaurant 1 name</li>
-        <li>location: (3, 5)</li>
-        <li>logo: <img src="url of restaurant image" alt="logo"></li>
+<ul>
+    <li>id: <c:out value="${restaurant.id}"/></li>
+    <li>name: <c:out value="${restaurant.id}"/></li>
+    <li>location: (<c:out value="${restaurant.location.x}"/>, <c:out value="${restaurant.location.y}"/>)</li>
+    <li>logo: <img src="${restaurant.logo}" alt="logo"></li>
+    <li>menu:
+        <ul>
+            <c:forEach var="food" items="${restaurant.menu}">
+            <li>
+                <img src="${food.image}" alt="logo">
+                <div><c:out value="${food.name}"/></div>
+                <div><c:out value="${food.price}"/> Toman</div>
+                <form action="/loghme_war_exploded/order"  method="POST">
+                    <input type="hidden" id="name" name="name" value="${food.name}" />
+                    <input type="hidden" id="restaurantName" name="restaurantName" value="${restaurant.name}" />
+                    <input type="hidden" id="price" name="price" value="${food.price}" />
+                    <button type="submit">addToCart</button>
+                </form>
+            </li>
+            </c:forEach>
+        </ul>
 
-        <!-- IN CASE YOU WANT SOME BONUS : -->
-        <!-- <li>estimated delivery time: 10 min 2 sec </li> -->
-
-        <li>menu: 
-        	<ul>
-        		<li>
-                    <img src="url of food image" alt="logo">
-                    <div>food1</div>
-                    <div>20000 Toman</div>
-                    <form action="" method="POST">
-                        <button type="submit">addToCart</button>
-                    </form>
-                </li>
-                <li>
-                    <img src="url of food image" alt="logo">
-                    <div>food2</div>
-                    <div>40000 Toman</div>
-                    <form action="" method="POST">
-                        <button type="submit">addToCart</button>
-                    </form>
-                </li>
-        	</ul>
-        </li>
-    </ul>
+    </li>
+</ul>
 </body>
 </html>

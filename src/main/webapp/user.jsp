@@ -15,30 +15,37 @@
 </head>
 
 <body>
-    <ul>
-        <li>id: 1</li>
-        <li>full name: Ehsan KhamesPanah</li>
-        <li>phone number: +989123456789</li>
-        <li>email: ekhamespanah@yahoo.com</li>
-        <li>credit: 50000 Toman</li>
-        <form action="" method="POST">
-            <button type="submit">increase</button>
-            <label>
-                <input type="text" name="credit" value="" />
-            </label>
-        </form>
+<ul>
+    <li>id: 1</li>
+    <li>full name: <c:out value="${user.fname}"/> <c:out value="${user.lname}"/></li>
+    <li>phone number: <c:out value="${user.phoneNumber}"/></li>
+    <li>email: <c:out value="${user.email}"/></li>
+    <li>credit: <c:out value="${user.wallet}"/> Toman</li>
+    <form action="/loghme_war_exploded/user" method="POST">
+        <button type="submit">increase</button>
+        <label>
+            <input type="text" name="credit" value=""/>
+        </label>
+    </form
+    <c:if test="${fn:length(abilities) gt 0}">
         <li>
-            Orders : 
+            Orders :
             <ul>
-                <li>
-                    <a href="link to order page">order id : 1</a>
-                </li>
-                <li>
-                    <a href="link to order page">order id : 2</a>
-                </li>
+                <c:forEach var="cart" items="${user.cartsOfUser}">
+                    <c:if test="${cart.status!='done'}">
+                        <c:if test="${cart.status!='inProcess'}">
+                            <c:forEach var="order" items="${cart.orders}">
+                                <li>
+                                    <a href="/loghme_war_exploded/order">order id : <c:out value="${order.foodName}"/></a>
+                                </li>
+                            </c:forEach>
+                        </c:if>
+                    </c:if>
+                </c:forEach>
             </ul>
         </li>
-    </ul>
+    </c:if>
+</ul>
 </body>
 
 </html>

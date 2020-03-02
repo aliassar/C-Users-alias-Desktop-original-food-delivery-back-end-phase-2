@@ -12,12 +12,14 @@
     </style>
 </head>
 <body>
-<%--<div th:text="${cart[0].restaurantName}"><c:out value="${cart.get}"/></div>--%>
-<%--<ul th:each="order :${cart}">--%>
-<%--    <li th:text="${order.foodName} + ': ' + ${order.NumOfOrder}">food 1:‌ 2</li>--%>
-<%--</ul>--%>
-<%--<form th:action="${url}" method="POST">--%>
-<%--    <button type="submit">finalize</button>--%>
+<div><c:out value="${cart.orders[0].restaurantName}"/></div>
+<ul>
+    <c:forEach var="order" items="${cart.orders}">
+        <li><c:out value="${order.foodName}"/>: <c:out value="${order.NumOfOrder}"/></li>
+    </c:forEach>
+</ul>
+<form action="/loghme_war_exploded/order" method="POST">
+    <button type="submit">finalize</button>
 </form>
 </body>
 </html>

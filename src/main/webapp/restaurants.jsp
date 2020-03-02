@@ -29,16 +29,12 @@
             <th>location</th>
         </tr>
         <tr>
-            <td>1</td>
-            <td><img class="logo" src="https://picsum.photos/536/354" alt="logo"></td>
-            <td>restaurant 1 name</td>
-            <td>(10, 7)</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td><img class="logo" src="https://picsum.photos/536/354" alt="logo"></td>
-        	<td>restaurant 2 name</td>
-        	<td>(210, 99)</td>
+            <c:forEach var="restaurant" items="${restaurants}">
+                <td><c:out value="${restaurant.id}"/></td>
+                <td><img class="logo" src="${restaurant.logo}" alt="logo"></td>
+                <td><c:out value="${restaurant.name}"/></td>
+                <td>(<c:out value="${restaurant.location.x}"/>, <c:out value="${restaurant.location.y}"/>)</td>
+            </c:forEach>
         </tr>
     </table>
 </body>

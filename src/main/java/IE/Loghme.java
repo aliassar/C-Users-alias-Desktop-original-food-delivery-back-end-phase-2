@@ -1,14 +1,12 @@
 package IE;
 
 import IE.CustomSerializer.CustomCartSerializer;
-import IE.CustomSerializer.CustomFoodSerializer;
 import IE.Exceptions.*;
 import IE.models.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;

@@ -17,7 +17,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 
 
 public class User {
-    private ArrayList<Cart> CartsOfUser;
+    private ArrayList<Cart> cartsOfUser;
     private String fname;
     private String lname;
     private String phoneNumber;
@@ -25,7 +25,7 @@ public class User {
     private float wallet;
 
     public User(String fname, String lname, String phoneNumber, String email, float wallet) {
-        this.CartsOfUser = new ArrayList<>();
+        this.cartsOfUser = new ArrayList<>();
         this.fname = fname;
         this.lname = lname;
         this.phoneNumber = phoneNumber;
@@ -82,10 +82,10 @@ public class User {
     }
 
     public Cart getInProcessCart() throws NoInProcessOrder, NoOrder {
-        if (CartsOfUser.size() < 1) {
+        if (cartsOfUser.size() < 1) {
             throw new NoOrder("There are no order");
         } else {
-            Cart lastCart = CartsOfUser.get(CartsOfUser.size() - 1);
+            Cart lastCart = cartsOfUser.get(cartsOfUser.size() - 1);
             if (lastCart.getStatus().equals("inProcess")) {
                 return lastCart;
             } else {
@@ -94,14 +94,14 @@ public class User {
         }
     }
     public Cart getLastCart() throws NoOrder {
-        if (CartsOfUser.size() < 1) {
+        if (cartsOfUser.size() < 1) {
             throw new NoOrder("There are no order");
         } else {
-            return CartsOfUser.get(CartsOfUser.size() - 1);
+            return cartsOfUser.get(cartsOfUser.size() - 1);
         }
     }
     public void newCart(Cart cart) {
-        CartsOfUser.add(cart);
+        cartsOfUser.add(cart);
     }
 
 }

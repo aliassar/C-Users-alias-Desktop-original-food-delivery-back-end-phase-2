@@ -6,7 +6,6 @@
     <title>Error</title>
 </head>
 <body>
-<%--@elvariable id="error" type="java.lang.String"--%>
-    <c:out value="${error}"/>
+<div><c:out value="${error}"/></div>
 </body>
 </html>

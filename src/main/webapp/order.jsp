@@ -14,22 +14,13 @@
 <body>
     <div>restaurant name</div>
     <ul>
-        <li>food 1:‌ 2</li>
-        <li>food 2: 3</li>
-        <li>food 3: 1</li>
+        <c:forEach var="order" items="${cart.orders}">
+            <li><c:out value="${order.foodName}"/>:‌ <c:out value="${order.numOfOrder}"/></li>
+
+        </c:forEach>
     </ul>
-    <!-- One of these states -->
     <div>
-        status : finding delivery
-    </div>
-    <!-- or -->
-    <div>
-        <div>status : delivering</div>
-        <div>remained time : 10 min 12 sec</div>
-    </div>
-    <!-- or -->
-    <div>
-        status : done
+        status : <c:out value="${cart.status}"/>
     </div>
 </body>
 </html>

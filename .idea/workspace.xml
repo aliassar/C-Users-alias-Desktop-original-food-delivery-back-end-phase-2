@@ -7,44 +7,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ff69a704-a34f-4400-82bc-5864b126d2bf" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/alias.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/javax_servlet_jstl_1_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/IE/Servlets/CartServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/IE/Servlets/FoodPartyServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/IE/Servlets/OrderServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/cart.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/foodparty.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/order.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/restaurant.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/restaurants.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/user.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IE/CustomSerializer/CustomCartSerializer.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/IE/Loghme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/Loghme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IE/Servlets/test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IE/models/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/models/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IE/models/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/models/Order.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IE/Servlets/CartServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/Servlets/CartServlet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/IE/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Loghme/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/target/Loghme/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/CustomSerializer/CustomCartSerializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/CustomSerializer/CustomCartSerializer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/cart.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/cart.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/exception.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/exception.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/order.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/order.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/restaurant.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/restaurant.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/restaurants.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/restaurants.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/user.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/user.jsp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/Loghme$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/Loghme$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/Loghme$2.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/Loghme.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/Loghme.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/Servlets/test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/models/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/models/Order.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/models/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/Loghme/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/target/Loghme/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/IE/CustomSerializer/CustomCartSerializer.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/CustomSerializer/CustomCartSerializer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/IE/Loghme$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/Loghme$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/IE/Loghme$2.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/IE/Loghme.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/Loghme.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/IE/Servlets/test.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/IE/models/Order.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/models/Order.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/IE/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/models/User.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -247,6 +225,7 @@
         <option name="Make" enabled="true" />
         <option name="BuildArtifacts" enabled="true">
           <artifact name="loghme:war exploded" />
+          <artifact name="loghme:war" />
         </option>
       </method>
     </configuration>
@@ -260,11 +239,6 @@
               <path>
                 <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
                 <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-              </path>
-              <path>
-                <item name="services root" type="e789fda9:ObjectUtils$Sentinel" />
-                <item name="Tomcat Server" type="7427dc5b:ServiceModel$ServiceGroupNode" />
-                <item name="Running" type="7427dc5b:ServiceModel$ServiceGroupNode" />
               </path>
             </expand>
             <select />
@@ -286,11 +260,25 @@
       <workItem from="1582353710701" duration="6022000" />
       <workItem from="1583100638133" duration="416000" />
       <workItem from="1583111828052" duration="12927000" />
+      <workItem from="1583129610334" duration="3300000" />
+      <workItem from="1583134050264" duration="2362000" />
     </task>
+    <task id="LOCAL-00001" summary="Cleaning loghme and configuring old servlets">
+      <created>1583129834251</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1583129834252</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Cleaning loghme and configuring old servlets" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleaning loghme and configuring old servlets" />
   </component>
   <component name="WindowStateProjectService">
     <state x="584" y="70" key="#Project_Structure" timestamp="1583117333780">
@@ -321,62 +309,62 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="512" y="247" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.0.1536.824@0.0.1536.824" timestamp="1583113236464" />
-    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1583129686196">
+    <state x="372" y="0" key="CommitChangelistDialog2" timestamp="1583129832579">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583129686196" />
+    <state x="372" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1583129832579" />
     <state x="762" y="0" width="781" height="830" key="DiffContextDialog" timestamp="1583121272644">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="762" y="0" width="781" height="830" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1583121272644" />
-    <state width="1024" height="187" key="GridCell.Tab.0.bottom" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.0.bottom" timestamp="1583132407418">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
-    <state width="1024" height="187" key="GridCell.Tab.0.center" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583132407418" />
+    <state width="1024" height="94" key="GridCell.Tab.0.center" timestamp="1583132407418">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
-    <state width="1024" height="187" key="GridCell.Tab.0.left" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583132407418" />
+    <state width="1024" height="94" key="GridCell.Tab.0.left" timestamp="1583132407418">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
-    <state width="1024" height="187" key="GridCell.Tab.0.right" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583132407418" />
+    <state width="1024" height="94" key="GridCell.Tab.0.right" timestamp="1583132407418">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
-    <state width="1024" height="187" key="GridCell.Tab.1.bottom" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583132407418" />
+    <state width="1024" height="94" key="GridCell.Tab.1.bottom" timestamp="1583132407327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
-    <state width="1024" height="187" key="GridCell.Tab.1.center" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583132407327" />
+    <state width="1024" height="94" key="GridCell.Tab.1.center" timestamp="1583132407326">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
-    <state width="1024" height="187" key="GridCell.Tab.1.left" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1583132407326" />
+    <state width="1024" height="94" key="GridCell.Tab.1.left" timestamp="1583132407326">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
-    <state width="1024" height="187" key="GridCell.Tab.1.right" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1583132407326" />
+    <state width="1024" height="94" key="GridCell.Tab.1.right" timestamp="1583132407327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
-    <state width="1024" height="187" key="GridCell.Tab.2.bottom" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1583132407327" />
+    <state width="1024" height="94" key="GridCell.Tab.2.bottom" timestamp="1583132407327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
-    <state width="1024" height="187" key="GridCell.Tab.2.center" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583132407327" />
+    <state width="1024" height="94" key="GridCell.Tab.2.center" timestamp="1583132407327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
-    <state width="1024" height="187" key="GridCell.Tab.2.left" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1583132407327" />
+    <state width="1024" height="94" key="GridCell.Tab.2.left" timestamp="1583132407327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
-    <state width="1024" height="187" key="GridCell.Tab.2.right" timestamp="1583128263043">
+    <state width="1024" height="94" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1583132407327" />
+    <state width="1024" height="94" key="GridCell.Tab.2.right" timestamp="1583132407327">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1024" height="187" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1583128263043" />
+    <state width="1024" height="94" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1583132407327" />
     <state width="1024" height="187" key="GridCell.Tab.3.bottom" timestamp="1583123590098">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -393,6 +381,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="1024" height="187" key="GridCell.Tab.3.right/0.0.1536.824@0.0.1536.824" timestamp="1583123590098" />
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1583129845303">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1583129845303" />
     <state x="760" y="335" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1583117298882">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -405,9 +397,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="157" key="extract.method.dialog/0.0.1536.824@0.0.1536.824" timestamp="1583121053848" />
-    <state x="452" y="128" width="631" height="568" key="find.popup" timestamp="1583118779814">
+    <state x="452" y="128" width="631" height="568" key="find.popup" timestamp="1583129899340">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="452" y="128" width="631" height="568" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1583118779814" />
+    <state x="452" y="128" width="631" height="568" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1583129899340" />
   </component>
 </project>
