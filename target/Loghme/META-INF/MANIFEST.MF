@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
+Built-By: Hamid
 Created-By: IntelliJ IDEA
-Built-By: alias
-Build-Jdk: 1.8.0_211
+Build-Jdk: 1.8
 

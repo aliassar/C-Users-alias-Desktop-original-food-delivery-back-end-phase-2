@@ -14,6 +14,8 @@ import java.util.*;
 public class Loghme {
     private static Loghme instance;
     private ArrayList<Restaurant> AllRestaurants;
+    private ArrayList<FoodPartyRestaurants> FoodPartyRestaurants;
+    //private ArrayList<Delivery> deliveries;
     private User AppUser;
 
     public static Loghme getInstance() {
@@ -33,7 +35,18 @@ public class Loghme {
                 , new TypeReference<List<Restaurant>>() {
                 });
         this.AppUser = new User("H", "M", "+0", "test@test.com", 2500000);
+
     }
+
+    public void setFoodPartyRestaurants(ArrayList<FoodPartyRestaurants> foodPartyRestaurants) {
+        FoodPartyRestaurants = foodPartyRestaurants;
+    }
+    //    public void SetDelivery() throws IOException{
+//        ObjectMapper mapper = new ObjectMapper();
+//        this.deliveries = mapper.readValue(new URL("http://138.197.181.131:8080/deliveries")
+//                , new TypeReference<List<Delivery>>() {
+//                });
+//    }
 
     public ArrayList<Restaurant> getAllRestaurants() {
         return this.AllRestaurants;

@@ -1,6 +1,6 @@
 package IE.models;
 
-public class delivery {
+public class Delivery {
     private String ID;
     private Location location;
     private int velocity;
