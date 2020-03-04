@@ -10,6 +10,10 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 public class Loghme {
     private static Loghme instance;
@@ -40,6 +44,13 @@ public class Loghme {
 
     public void setFoodPartyRestaurants(ArrayList<FoodPartyRestaurants> foodPartyRestaurants) {
         FoodPartyRestaurants = foodPartyRestaurants;
+    }
+    public void AssignDeliveryToUser(ArrayList<Cart> AllCarts,int IndexOfCart, Restaurant restaurant) throws IOException{
+        ScheduledExecutorService scheduler;
+        scheduler = Executors.newSingleThreadScheduledExecutor();
+        ScheduledFuture<?> scheduledFuture = scheduler.scheduleAtFixedRate(new DeliveryManagment(AllCarts,IndexOfCart,
+                scheduler, restaurant), 0, 30, TimeUnit.SECONDS);
+
     }
     public float CalculateArivingTime(Location RestaurantLocation, Delivery delivery){
         float Result = 0;

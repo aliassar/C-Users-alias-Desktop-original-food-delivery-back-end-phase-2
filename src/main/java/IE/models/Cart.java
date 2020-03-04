@@ -4,12 +4,21 @@ import java.util.ArrayList;
 
 public class Cart {
     private ArrayList<Order> orders;
-    private int remainedTime;
+    private float remainedTimeToArive;
     private String Status;
     public Cart() {
         this.Status = "inProcess";
         this.orders = new ArrayList<>();
     }
+
+    public float getRemainedTimeToArive() {
+        return remainedTimeToArive;
+    }
+
+    public void setRemainedTimeToArive(float remainedTimeToArive) {
+        this.remainedTimeToArive = remainedTimeToArive;
+    }
+
     public ArrayList<Order> getOrders() {
         return orders;
     }
