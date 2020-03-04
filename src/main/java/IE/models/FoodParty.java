@@ -34,6 +34,8 @@ public class FoodParty extends Food {
         this.count = count;
     }
 
+    public void decreaseCount(){ this.count += -1;}
+
     public String getType() {
         return Type;
     }

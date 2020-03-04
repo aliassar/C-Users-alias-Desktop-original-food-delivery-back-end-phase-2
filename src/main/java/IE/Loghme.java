@@ -94,6 +94,21 @@ public class Loghme {
         return this.AllRestaurants;
     }
 
+    public void DecreaseFoodCount(String RestaurantID, FoodParty food){
+        int index = 0;
+        for (int i=0; i < FoodPartyRestaurants.size(); i++){
+            if (FoodPartyRestaurants.get(i).getId().equals(RestaurantID)){
+                index = i;
+            }
+        }
+        for (int i=0; i < FoodPartyRestaurants.get(index).getMenu().size(); i++){
+            if (FoodPartyRestaurants.get(index).getMenu().get(i).getName().equals(food.getName())){
+                FoodPartyRestaurants.get(index).getMenu().get(i).decreaseCount();
+            }
+
+        }
+    }
+
     public Restaurant getRestaurantInfo(String restaurantId) throws OutOfBoundaryLocation, NoRestaurant {
         for (Restaurant restaurant : this.AllRestaurants) {
             if (restaurant.getId().equals(restaurantId)) {
@@ -116,7 +131,7 @@ public class Loghme {
         if (this.FoodPartyRestaurants.size() == 0) {
             throw new NoRestaurant("there is no restaurants to choose");
         }
-        if (food.getCount() == 0) {
+        if (food.getCount() <= 0) {
             throw new NoFoodRemained("no food from this kind remained");
         }
 
@@ -157,6 +172,7 @@ public class Loghme {
             if (order.getFoodName().equals(food.getName())) {
                 sameFood = true;
                 order.AddNum();
+                DecreaseFoodCount(restaurantID,food);
                 return;
             }
         }
@@ -164,6 +180,7 @@ public class Loghme {
             if (sameRestaurant) {
                 Order order = new Order(food.getName(), food.getRestaurantName(), 1, food.getPrice());
                 inProcessCart.addToOrders(order);
+                DecreaseFoodCount(restaurantID,food);
             } else {
                 throw new DifRestaurants("you can not choose different restaurant");
             }
