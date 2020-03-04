@@ -11,6 +11,9 @@ public class Food {
     private float price;
     private float popularity;
     private URL image;
+    private String Type = "Food";
+
+
 
     public Food(String name, String restaurantName,float Price) {
         this.name = name;
@@ -19,6 +22,14 @@ public class Food {
     }
 
     public Food() {
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
     }
 
     public URL getImage() {

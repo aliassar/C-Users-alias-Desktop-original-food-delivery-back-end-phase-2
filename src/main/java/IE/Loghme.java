@@ -69,36 +69,38 @@ public class Loghme {
         return this.AppUser;
     }
 
-    public void addToCart(Food food) throws NoRestaurant, WrongFood, DifRestaurants {
+    public void FoodPartyaddToCart(FoodParty food)throws NoRestaurant, WrongFood, DifRestaurants, NoFoodRemained {
 
-        //Check if there is a restaurant there
-        if (this.AllRestaurants.size() == 0) {
-            throw new NoRestaurant("there is no restaurants to choose");
-        }
-        boolean UnknownFood = true;
-        Restaurant rest = new Restaurant();
-        for (Restaurant restaurant : this.AllRestaurants) {
-            if (restaurant.getName().equals(food.getRestaurantName())) {
-                rest = restaurant;
-                UnknownFood = false;
+            if (this.FoodPartyRestaurants.size() == 0) {
+                throw new NoRestaurant("there is no restaurants to choose");
             }
-        }
-        if (UnknownFood) {
-            throw new NoRestaurant("there is no restaurant with that name");
-        }
-        UnknownFood = true;
-        for (int i = 0; i < rest.getMenu().size(); i++) {
-            if (rest.getMenu().get(i).getName().equals(food.getName())) {
-                UnknownFood = false;
-                break;
+            if (food.getCount() == 0){
+                throw new NoFoodRemained("no food from this kind remained");
             }
-        }
-        if (UnknownFood) {
-            throw new WrongFood("no food with this name in this restaurant");
-        }
 
+            boolean UnknownFood = true;
+            FoodPartyRestaurants rest = new FoodPartyRestaurants();
+            for (FoodPartyRestaurants restaurant : this.FoodPartyRestaurants) {
+                if (restaurant.getName().equals(food.getRestaurantName())) {
+                    rest = restaurant;
+                    UnknownFood = false;
+                }
+            }
+            if (UnknownFood) {
+                throw new NoRestaurant("there is no restaurant with that name");
+            }
+            UnknownFood = true;
+            for (int i = 0; i < rest.getMenu().size(); i++) {
+                if (rest.getMenu().get(i).getName().equals(food.getName())) {
+                    UnknownFood = false;
+                    break;
+                }
+            }
+            if (UnknownFood) {
+                throw new WrongFood("no food with this name in this restaurant");
+            }
         Cart inProcessCart = this.AppUser.getInProcessCart();
-        boolean sameRestaurant = inProcessCart.getOrders().size()==0;
+        boolean sameRestaurant = inProcessCart.getOrders().size() == 0;
         for (Order value : inProcessCart.getOrders()) {
             if (value.getRestaurantName().equals(food.getRestaurantName())) {
                 sameRestaurant = true;
@@ -121,6 +123,64 @@ public class Loghme {
                 throw new DifRestaurants("you can not choose different restaurant");
             }
         }
+
+
+    }
+
+    public void addToCart(Food food) throws NoRestaurant, WrongFood, DifRestaurants {
+
+
+            //Check if there is a restaurant there
+            if (this.AllRestaurants.size() == 0) {
+                throw new NoRestaurant("there is no restaurants to choose");
+            }
+            boolean UnknownFood = true;
+            Restaurant rest = new Restaurant();
+            for (Restaurant restaurant : this.AllRestaurants) {
+                if (restaurant.getName().equals(food.getRestaurantName())) {
+                    rest = restaurant;
+                    UnknownFood = false;
+                }
+            }
+            if (UnknownFood) {
+                throw new NoRestaurant("there is no restaurant with that name");
+            }
+            UnknownFood = true;
+            for (int i = 0; i < rest.getMenu().size(); i++) {
+                if (rest.getMenu().get(i).getName().equals(food.getName())) {
+                    UnknownFood = false;
+                    break;
+                }
+            }
+            if (UnknownFood) {
+                throw new WrongFood("no food with this name in this restaurant");
+            }
+
+            Cart inProcessCart = this.AppUser.getInProcessCart();
+            boolean sameRestaurant = inProcessCart.getOrders().size() == 0;
+            for (Order value : inProcessCart.getOrders()) {
+                if (value.getRestaurantName().equals(food.getRestaurantName())) {
+                    sameRestaurant = true;
+                    break;
+                }
+            }
+            boolean sameFood = false;
+            for (Order order : inProcessCart.getOrders()) {
+                if (order.getFoodName().equals(food.getName())) {
+                    sameFood = true;
+                    order.AddNum();
+                    return;
+                }
+            }
+            if (!sameFood) {
+                if (sameRestaurant) {
+                    Order order = new Order(food.getName(), food.getRestaurantName(), 1, food.getPrice());
+                    inProcessCart.addToOrders(order);
+                } else {
+                    throw new DifRestaurants("you can not choose different restaurant");
+                }
+            }
+
     }
 
     public Cart getCart() {
