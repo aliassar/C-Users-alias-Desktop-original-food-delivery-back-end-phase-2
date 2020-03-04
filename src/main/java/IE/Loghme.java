@@ -41,6 +41,16 @@ public class Loghme {
     public void setFoodPartyRestaurants(ArrayList<FoodPartyRestaurants> foodPartyRestaurants) {
         FoodPartyRestaurants = foodPartyRestaurants;
     }
+    public float CalculateArivingTime(Location RestaurantLocation, Delivery delivery){
+        float Result = 0;
+        Location UserLocation = new Location(0,0);
+        float Distance = 0;
+        Distance += (float) UserLocation.Distance(delivery.getLocation(), RestaurantLocation);
+        Distance += (float) UserLocation.Distance(UserLocation, RestaurantLocation);
+        Result = Distance/delivery.getVelocity();
+        return Result;
+
+    }
 
     public float EstimateArivingTime(Location RestaurantLocation){
         float Result = 60;
