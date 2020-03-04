@@ -4,6 +4,14 @@ public class Location {
     private float x;
     private float y;
 
+    public Location(float x, float y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Location() {
+    }
+
     public double Distance(Location first, Location second){
         float x = Math.abs(first.getX() - second.getX()) * Math.abs(first.getX() - second.getX());
         float y = Math.abs(first.getY() - second.getY()) * Math.abs(first.getY() - second.getY());

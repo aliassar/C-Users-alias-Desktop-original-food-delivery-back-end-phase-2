@@ -41,6 +41,20 @@ public class Loghme {
     public void setFoodPartyRestaurants(ArrayList<FoodPartyRestaurants> foodPartyRestaurants) {
         FoodPartyRestaurants = foodPartyRestaurants;
     }
+
+    public float EstimateArivingTime(Location RestaurantLocation){
+        float Result = 60;
+        Location UserLocation = new Location(0,0);
+        float Distance = 0;
+        Distance = (float) UserLocation.Distance(UserLocation, RestaurantLocation);
+        Result += Distance/5;
+        Distance = Distance/2;
+        Result += Distance/5;
+        return Result;
+
+    }
+
+
     //    public void SetDelivery() throws IOException{
 //        ObjectMapper mapper = new ObjectMapper();
 //        this.deliveries = mapper.readValue(new URL("http://138.197.181.131:8080/deliveries")
