@@ -6,9 +6,22 @@ public class Cart {
     private ArrayList<Order> orders;
     private float remainedTimeToArive;
     private String Status;
+    private String restaurantID;
     public Cart() {
         this.Status = "inProcess";
         this.orders = new ArrayList<>();
+    }
+
+    public void setOrders(ArrayList<Order> orders) {
+        this.orders = orders;
+    }
+
+    public String getRestaurantID() {
+        return restaurantID;
+    }
+
+    public void setRestaurantID(String restaurantID) {
+        this.restaurantID = restaurantID;
     }
 
     public float getRemainedTimeToArive() {

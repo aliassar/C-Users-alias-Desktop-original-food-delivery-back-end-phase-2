@@ -3,7 +3,7 @@ package IE.models;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class FoodPartyRestaurants  {
+public class FoodPartyRestaurant  {
     private String id;
     private String name;
     private String description;

@@ -1,7 +1,6 @@
 package IE;
 
-import IE.models.FoodPartyRestaurants;
-import IE.models.Restaurant;
+import IE.models.FoodPartyRestaurant;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -24,11 +23,11 @@ public class FoodPartyManagement implements Runnable  {
     }
     public void ManagePartyRestaurants() throws IOException{
         ObjectMapper mapper = new ObjectMapper();
-        ArrayList<FoodPartyRestaurants> PartyRestaurants = new ArrayList<>();
+        ArrayList<FoodPartyRestaurant> PartyRestaurants = new ArrayList<>();
         PartyRestaurants = mapper.readValue(new URL("http://138.197.181.131:8080/foodparty")
-                , new TypeReference<List<FoodPartyRestaurants>>() {
+                , new TypeReference<List<FoodPartyRestaurant>>() {
                 });
-        Loghme.getInstance().setFoodPartyRestaurants(PartyRestaurants);
+        Loghme.getInstance().setFoodPartyRestaurant(PartyRestaurants);
         //System.out.println(PartyRestaurants.get(0).getMenu().get(0).getCount());
 
     }

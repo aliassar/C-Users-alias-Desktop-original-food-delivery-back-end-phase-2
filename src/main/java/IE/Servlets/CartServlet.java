@@ -30,10 +30,11 @@ public class CartServlet extends HttpServlet {
         Loghme loghme = Loghme.getInstance();
         String name =  request.getParameter("name");
         String restaurantName = request.getParameter("restaurantName");
+        String restaurantID = request.getParameter("ID");
         float price = Float.parseFloat(Objects.requireNonNull(request.getParameter("price")));
         Food food = new Food(name, restaurantName, price);
         try {
-            loghme.addToCart(food);
+            loghme.addToCart(food, restaurantID);
         } catch (NoRestaurant | WrongFood | DifRestaurants e) {
             e.printStackTrace();
             request.setAttribute("error", e.getMessage());

@@ -37,6 +37,7 @@
                     <input type="hidden" id="name" name="name" value="${food.name}" />
                     <input type="hidden" id="restaurantName" name="restaurantName" value="${restaurant.name}" />
                     <input type="hidden" id="price" name="price" value="${food.price}" />
+                    <input type="hidden" id="ID" name="ID" value="${restaurant.id}" />
                     <button type="submit">addToCart</button>
                 </form>
             </li>

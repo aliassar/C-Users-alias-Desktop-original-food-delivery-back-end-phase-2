@@ -2,6 +2,7 @@ package IE;
 
 import IE.models.Cart;
 import IE.models.Delivery;
+import IE.models.Location;
 import IE.models.Restaurant;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,18 +14,17 @@ import java.util.List;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.ScheduledFuture;
 
 public class DeliveryManagment implements Runnable {
     private ArrayList<Cart> AllCarts;
     private int CartIndex;
     private ScheduledExecutorService scheduler;
-    private Restaurant ChosenRestaurant;
+    private Location ChosenRestaurantLocation;
 
-    public DeliveryManagment(ArrayList<Cart> allCarts, int cartIndex, ScheduledExecutorService scheduledFuture,Restaurant restaurant) {
+    public DeliveryManagment(ArrayList<Cart> allCarts, int cartIndex, ScheduledExecutorService scheduledFuture,Location location) {
         AllCarts = allCarts;
         CartIndex = cartIndex;
-        this.ChosenRestaurant = restaurant;
+        this.ChosenRestaurantLocation = location;
         this.scheduler = scheduledFuture;
     }
 
@@ -50,11 +50,11 @@ public class DeliveryManagment implements Runnable {
             float ArrivingTime = 999;
             for (int i=0; i < deliveries.size(); i++){
                 if(i == 0){
-                    ArrivingTime = Loghme.getInstance().CalculateArivingTime(ChosenRestaurant.getLocation(), deliveries.get(i));
+                    ArrivingTime = Loghme.getInstance().CalculateArrivingTime(ChosenRestaurantLocation, deliveries.get(i));
                     ChosenDelivery = deliveries.get(i);
                 }
                 else {
-                    float newArrivingTime = Loghme.getInstance().CalculateArivingTime(ChosenRestaurant.getLocation(), deliveries.get(i));
+                    float newArrivingTime = Loghme.getInstance().CalculateArrivingTime(ChosenRestaurantLocation, deliveries.get(i));
                     if (ArrivingTime> newArrivingTime){
                         ArrivingTime = newArrivingTime;
                         ChosenDelivery = deliveries.get(i);

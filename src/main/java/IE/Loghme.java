@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 public class Loghme {
     private static Loghme instance;
     private ArrayList<Restaurant> AllRestaurants;
-    private ArrayList<FoodPartyRestaurants> FoodPartyRestaurants;
+    private ArrayList<FoodPartyRestaurant> FoodPartyRestaurants;
     //private ArrayList<Delivery> deliveries;
     private User AppUser;
 
@@ -42,17 +42,18 @@ public class Loghme {
 
     }
 
-    public void setFoodPartyRestaurants(ArrayList<FoodPartyRestaurants> foodPartyRestaurants) {
+    public void setFoodPartyRestaurant(ArrayList<FoodPartyRestaurant> foodPartyRestaurants) {
         FoodPartyRestaurants = foodPartyRestaurants;
     }
-    public void AssignDeliveryToUser(ArrayList<Cart> AllCarts,int IndexOfCart, Restaurant restaurant) throws IOException{
+    public void AssignDeliveryToUser(ArrayList<Cart> AllCarts,int IndexOfCart, Location restaurantLocation) throws IOException{
+        System.out.println("HI");
         ScheduledExecutorService scheduler;
         scheduler = Executors.newSingleThreadScheduledExecutor();
         ScheduledFuture<?> scheduledFuture = scheduler.scheduleAtFixedRate(new DeliveryManagment(AllCarts,IndexOfCart,
-                scheduler, restaurant), 0, 30, TimeUnit.SECONDS);
+                scheduler, restaurantLocation), 0, 30, TimeUnit.SECONDS);
 
     }
-    public float CalculateArivingTime(Location RestaurantLocation, Delivery delivery){
+    public float CalculateArrivingTime(Location RestaurantLocation, Delivery delivery){
         float Result = 0;
         Location UserLocation = new Location(0,0);
         float Distance = 0;
@@ -114,8 +115,8 @@ public class Loghme {
             }
 
             boolean UnknownFood = true;
-            FoodPartyRestaurants rest = new FoodPartyRestaurants();
-            for (FoodPartyRestaurants restaurant : this.FoodPartyRestaurants) {
+            FoodPartyRestaurant rest = new FoodPartyRestaurant();
+            for (FoodPartyRestaurant restaurant : this.FoodPartyRestaurants) {
                 if (restaurant.getName().equals(food.getRestaurantName())) {
                     rest = restaurant;
                     UnknownFood = false;
@@ -162,13 +163,14 @@ public class Loghme {
 
     }
 
-    public void addToCart(Food food) throws NoRestaurant, WrongFood, DifRestaurants {
+    public void addToCart(Food food, String restaurantID) throws NoRestaurant, WrongFood, DifRestaurants {
 
 
             //Check if there is a restaurant there
             if (this.AllRestaurants.size() == 0) {
                 throw new NoRestaurant("there is no restaurants to choose");
             }
+
             boolean UnknownFood = true;
             Restaurant rest = new Restaurant();
             for (Restaurant restaurant : this.AllRestaurants) {
@@ -192,6 +194,9 @@ public class Loghme {
             }
 
             Cart inProcessCart = this.AppUser.getInProcessCart();
+            if (inProcessCart.getOrders().size() == 0){
+                inProcessCart.setRestaurantID(restaurantID);
+            }
             boolean sameRestaurant = inProcessCart.getOrders().size() == 0;
             for (Order value : inProcessCart.getOrders()) {
                 if (value.getRestaurantName().equals(food.getRestaurantName())) {
@@ -222,6 +227,24 @@ public class Loghme {
         return this.AppUser.getInProcessCart();
     }
 
+    public Restaurant FindRestaurant(String ID) throws NoRestaurant{
+        for (int i=0; i<this.AllRestaurants.size(); i++){
+            if (this.AllRestaurants.get(i).getId().equals(ID)){
+                return this.AllRestaurants.get(i);
+            }
+        }
+        throw new NoRestaurant("no such restaurant found");
+    }
+    public FoodPartyRestaurant FindFoodPartyRestaurant(String ID) throws NoRestaurant{
+        for (int i = 0; i<this.FoodPartyRestaurants.size(); i++){
+            if (this.FoodPartyRestaurants.get(i).getId().equals(ID)){
+                return this.FoodPartyRestaurants.get(i);
+            }
+        }
+        throw new NoRestaurant("no such restaurant found");
+    }
+
+
     public void finalizeOrder() throws IOException, InsufficientMoney {
         Cart inProcessCart = this.AppUser.getInProcessCart();
         ObjectMapper mapper = new ObjectMapper();
@@ -240,7 +263,28 @@ public class Loghme {
         inProcessCart.setStatus("finding delivery");
         this.AppUser.setWallet(this.AppUser.getWallet() - totalPrice);
         this.AppUser.newProcessedCart(inProcessCart);
+
+        Restaurant chosenRestaurant;
+        FoodPartyRestaurant chosenFoodPartyRestaurants;
+        System.out.println(inProcessCart.getRestaurantID());
+
+        try {
+            chosenRestaurant = FindRestaurant(inProcessCart.getRestaurantID());
+            this.AssignDeliveryToUser(this.AppUser.getCartsOfUser(),this.AppUser.getCartsOfUser().size()-1,
+                    chosenRestaurant.getLocation());
+        }catch (NoRestaurant e){
+           try {
+               chosenFoodPartyRestaurants = FindFoodPartyRestaurant(inProcessCart.getRestaurantID());
+               this.AssignDeliveryToUser(this.AppUser.getCartsOfUser(),this.AppUser.getCartsOfUser().size()-1,
+                       chosenFoodPartyRestaurants.getLocation());
+           }catch (NoRestaurant error){
+               error.printStackTrace();
+           }
+        }
+
+
         this.AppUser.clearInProcessCart();
+
     }
 
     public void increaseWallet(Float amount) {
