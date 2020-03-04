@@ -1,5 +1,6 @@
 package IE.Servlets;
 
+import IE.Exceptions.EmptyCart;
 import IE.Exceptions.InsufficientMoney;
 import IE.Exceptions.NoOrder;
 import IE.Loghme;
@@ -52,7 +53,7 @@ public class OrderServlet extends HttpServlet {
             Cart cart = user.getLastCart();
             request.setAttribute("cart", cart);
             request.getRequestDispatcher("/order.jsp").forward(request, response);
-        } catch (InsufficientMoney | NoOrder e) {
+        } catch (InsufficientMoney | NoOrder | EmptyCart e) {
             e.printStackTrace();
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/exception.jsp").forward(request, response);

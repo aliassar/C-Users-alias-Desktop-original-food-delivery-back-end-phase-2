@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Cart {
     private ArrayList<Order> orders;
-    private float remainedTimeToArive;
+    private float remainedTimeToArive = 10000;
     private String Status;
     private String restaurantID;
     public Cart() {

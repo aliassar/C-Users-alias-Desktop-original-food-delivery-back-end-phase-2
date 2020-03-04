@@ -58,4 +58,22 @@ public class FoodPartyRestaurant  {
     public void setLogo(URL logo) {
         this.logo = logo;
     }
+
+    public double calculateLocation(){
+        float x = Math.abs(this.location.getX() - 0) * Math.abs(this.location.getX() - 0);
+        float y = Math.abs(this.location.getY() - 0) * Math.abs(this.location.getY() - 0);
+        double result = Math.sqrt(x+y);
+        return result;
+
+    }
+    public double calculatePopularity(){
+        float averageFoodPopularity = 0;
+        for (Food food : this.menu) {
+            averageFoodPopularity += food.getPopularity();
+        }
+        averageFoodPopularity = averageFoodPopularity/this.menu.size();
+        double popularity = averageFoodPopularity/this.calculateLocation();
+        return Math.round(popularity*1000)/1000.0;
+
+    }
 }

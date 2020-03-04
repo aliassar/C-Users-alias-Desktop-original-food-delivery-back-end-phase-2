@@ -13,6 +13,15 @@ public class FoodParty extends Food {
         return oldPrice;
     }
 
+    public FoodParty(String name, String restaurantName, float Price, float oldPrice, int count) {
+        super(name, restaurantName, Price);
+        this.oldPrice = oldPrice;
+        this.count = count;
+    }
+
+    public FoodParty() {
+    }
+
     public void setOldPrice(float oldPrice) {
         this.oldPrice = oldPrice;
     }

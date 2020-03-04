@@ -21,5 +21,8 @@
 <form action="/loghme_war_exploded/order" method="POST">
     <button type="submit">finalize</button>
 </form>
+<div>
+    estimated time to arrive : <c:out value="${estimatedArrive}"/>
+</div>
 </body>
 </html>

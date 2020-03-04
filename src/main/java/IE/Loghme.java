@@ -44,34 +44,40 @@ public class Loghme {
     }
 
     public void setFoodPartyRestaurant(ArrayList<FoodPartyRestaurant> foodPartyRestaurants) {
-        FoodPartyRestaurants = foodPartyRestaurants;
+        this.FoodPartyRestaurants = foodPartyRestaurants;
     }
-    public void AssignDeliveryToUser(ArrayList<Cart> AllCarts,int IndexOfCart, Location restaurantLocation) throws IOException{
+
+    public ArrayList<FoodPartyRestaurant> getFoodPartyRestaurants() {
+        return  FoodPartyRestaurants;
+    }
+
+    public void AssignDeliveryToUser(ArrayList<Cart> AllCarts, int IndexOfCart, Location restaurantLocation) throws IOException {
         ScheduledExecutorService scheduler;
         scheduler = Executors.newSingleThreadScheduledExecutor();
-        ScheduledFuture<?> scheduledFuture = scheduler.scheduleAtFixedRate(new DeliveryManagment(AllCarts,IndexOfCart,
+        ScheduledFuture<?> scheduledFuture = scheduler.scheduleAtFixedRate(new DeliveryManagment(AllCarts, IndexOfCart,
                 scheduler, restaurantLocation), 0, 5, TimeUnit.SECONDS);
 
     }
-    public float CalculateArrivingTime(Location RestaurantLocation, Delivery delivery){
+
+    public float CalculateArrivingTime(Location RestaurantLocation, Delivery delivery) {
         float Result = 0;
-        Location UserLocation = new Location(0,0);
+        Location UserLocation = new Location(0, 0);
         float Distance = 0;
         Distance += (float) UserLocation.Distance(delivery.getLocation(), RestaurantLocation);
         Distance += (float) UserLocation.Distance(UserLocation, RestaurantLocation);
-        Result = Distance/delivery.getVelocity();
+        Result = Distance / delivery.getVelocity();
         return Result;
 
     }
 
-    public float EstimateArivingTime(Location RestaurantLocation){
+    public float EstimateArivingTime(Location RestaurantLocation) {
         float Result = 60;
-        Location UserLocation = new Location(0,0);
+        Location UserLocation = new Location(0, 0);
         float Distance = 0;
         Distance = (float) UserLocation.Distance(UserLocation, RestaurantLocation);
-        Result += Distance/5;
-        Distance = Distance/2;
-        Result += Distance/5;
+        Result += Distance / 5;
+        Distance = Distance / 2;
+        Result += Distance / 5;
         return Result;
 
     }
@@ -105,37 +111,40 @@ public class Loghme {
         return this.AppUser;
     }
 
-    public void FoodPartyaddToCart(FoodParty food)throws NoRestaurant, WrongFood, DifRestaurants, NoFoodRemained {
+    public void FoodPartyaddToCart(FoodParty food,String restaurantID) throws NoRestaurant, WrongFood, DifRestaurants, NoFoodRemained {
 
-            if (this.FoodPartyRestaurants.size() == 0) {
-                throw new NoRestaurant("there is no restaurants to choose");
-            }
-            if (food.getCount() == 0){
-                throw new NoFoodRemained("no food from this kind remained");
-            }
+        if (this.FoodPartyRestaurants.size() == 0) {
+            throw new NoRestaurant("there is no restaurants to choose");
+        }
+        if (food.getCount() == 0) {
+            throw new NoFoodRemained("no food from this kind remained");
+        }
 
-            boolean UnknownFood = true;
-            FoodPartyRestaurant rest = new FoodPartyRestaurant();
-            for (FoodPartyRestaurant restaurant : this.FoodPartyRestaurants) {
-                if (restaurant.getName().equals(food.getRestaurantName())) {
-                    rest = restaurant;
-                    UnknownFood = false;
-                }
+        boolean UnknownFood = true;
+        FoodPartyRestaurant rest = new FoodPartyRestaurant();
+        for (FoodPartyRestaurant restaurant : this.FoodPartyRestaurants) {
+            if (restaurant.getName().equals(food.getRestaurantName())) {
+                rest = restaurant;
+                UnknownFood = false;
             }
-            if (UnknownFood) {
-                throw new NoRestaurant("there is no restaurant with that name");
+        }
+        if (UnknownFood) {
+            throw new NoRestaurant("there is no restaurant with that name");
+        }
+        UnknownFood = true;
+        for (int i = 0; i < rest.getMenu().size(); i++) {
+            if (rest.getMenu().get(i).getName().equals(food.getName())) {
+                UnknownFood = false;
+                break;
             }
-            UnknownFood = true;
-            for (int i = 0; i < rest.getMenu().size(); i++) {
-                if (rest.getMenu().get(i).getName().equals(food.getName())) {
-                    UnknownFood = false;
-                    break;
-                }
-            }
-            if (UnknownFood) {
-                throw new WrongFood("no food with this name in this restaurant");
-            }
+        }
+        if (UnknownFood) {
+            throw new WrongFood("no food with this name in this restaurant");
+        }
         Cart inProcessCart = this.AppUser.getInProcessCart();
+        if (inProcessCart.getOrders().size() == 0) {
+            inProcessCart.setRestaurantID(restaurantID);
+        }
         boolean sameRestaurant = inProcessCart.getOrders().size() == 0;
         for (Order value : inProcessCart.getOrders()) {
             if (value.getRestaurantName().equals(food.getRestaurantName())) {
@@ -166,60 +175,60 @@ public class Loghme {
     public void addToCart(Food food, String restaurantID) throws NoRestaurant, WrongFood, DifRestaurants {
 
 
-            //Check if there is a restaurant there
-            if (this.AllRestaurants.size() == 0) {
-                throw new NoRestaurant("there is no restaurants to choose");
-            }
+        //Check if there is a restaurant there
+        if (this.AllRestaurants.size() == 0) {
+            throw new NoRestaurant("there is no restaurants to choose");
+        }
 
-            boolean UnknownFood = true;
-            Restaurant rest = new Restaurant();
-            for (Restaurant restaurant : this.AllRestaurants) {
-                if (restaurant.getName().equals(food.getRestaurantName())) {
-                    rest = restaurant;
-                    UnknownFood = false;
-                }
+        boolean UnknownFood = true;
+        Restaurant rest = new Restaurant();
+        for (Restaurant restaurant : this.AllRestaurants) {
+            if (restaurant.getName().equals(food.getRestaurantName())) {
+                rest = restaurant;
+                UnknownFood = false;
             }
-            if (UnknownFood) {
-                throw new NoRestaurant("there is no restaurant with that name");
+        }
+        if (UnknownFood) {
+            throw new NoRestaurant("there is no restaurant with that name");
+        }
+        UnknownFood = true;
+        for (int i = 0; i < rest.getMenu().size(); i++) {
+            if (rest.getMenu().get(i).getName().equals(food.getName())) {
+                UnknownFood = false;
+                break;
             }
-            UnknownFood = true;
-            for (int i = 0; i < rest.getMenu().size(); i++) {
-                if (rest.getMenu().get(i).getName().equals(food.getName())) {
-                    UnknownFood = false;
-                    break;
-                }
-            }
-            if (UnknownFood) {
-                throw new WrongFood("no food with this name in this restaurant");
-            }
+        }
+        if (UnknownFood) {
+            throw new WrongFood("no food with this name in this restaurant");
+        }
 
-            Cart inProcessCart = this.AppUser.getInProcessCart();
-            if (inProcessCart.getOrders().size() == 0){
-                inProcessCart.setRestaurantID(restaurantID);
+        Cart inProcessCart = this.AppUser.getInProcessCart();
+        if (inProcessCart.getOrders().size() == 0) {
+            inProcessCart.setRestaurantID(restaurantID);
+        }
+        boolean sameRestaurant = inProcessCart.getOrders().size() == 0;
+        for (Order value : inProcessCart.getOrders()) {
+            if (value.getRestaurantName().equals(food.getRestaurantName())) {
+                sameRestaurant = true;
+                break;
             }
-            boolean sameRestaurant = inProcessCart.getOrders().size() == 0;
-            for (Order value : inProcessCart.getOrders()) {
-                if (value.getRestaurantName().equals(food.getRestaurantName())) {
-                    sameRestaurant = true;
-                    break;
-                }
+        }
+        boolean sameFood = false;
+        for (Order order : inProcessCart.getOrders()) {
+            if (order.getFoodName().equals(food.getName())) {
+                sameFood = true;
+                order.AddNum();
+                return;
             }
-            boolean sameFood = false;
-            for (Order order : inProcessCart.getOrders()) {
-                if (order.getFoodName().equals(food.getName())) {
-                    sameFood = true;
-                    order.AddNum();
-                    return;
-                }
+        }
+        if (!sameFood) {
+            if (sameRestaurant) {
+                Order order = new Order(food.getName(), food.getRestaurantName(), 1, food.getPrice());
+                inProcessCart.addToOrders(order);
+            } else {
+                throw new DifRestaurants("you can not choose different restaurant");
             }
-            if (!sameFood) {
-                if (sameRestaurant) {
-                    Order order = new Order(food.getName(), food.getRestaurantName(), 1, food.getPrice());
-                    inProcessCart.addToOrders(order);
-                } else {
-                    throw new DifRestaurants("you can not choose different restaurant");
-                }
-            }
+        }
 
     }
 
@@ -227,17 +236,18 @@ public class Loghme {
         return this.AppUser.getInProcessCart();
     }
 
-    public Restaurant FindRestaurant(String ID) throws NoRestaurant{
-        for (int i=0; i<this.AllRestaurants.size(); i++){
-            if (this.AllRestaurants.get(i).getId().equals(ID)){
+    public Restaurant FindRestaurant(String ID) throws NoRestaurant {
+        for (int i = 0; i < this.AllRestaurants.size(); i++) {
+            if (this.AllRestaurants.get(i).getId().equals(ID)) {
                 return this.AllRestaurants.get(i);
             }
         }
         throw new NoRestaurant("no such restaurant found");
     }
-    public FoodPartyRestaurant FindFoodPartyRestaurant(String ID) throws NoRestaurant{
-        for (int i = 0; i<this.FoodPartyRestaurants.size(); i++){
-            if (this.FoodPartyRestaurants.get(i).getId().equals(ID)){
+
+    public FoodPartyRestaurant FindFoodPartyRestaurant(String ID) throws NoRestaurant {
+        for (int i = 0; i < this.FoodPartyRestaurants.size(); i++) {
+            if (this.FoodPartyRestaurants.get(i).getId().equals(ID)) {
                 return this.FoodPartyRestaurants.get(i);
             }
         }
@@ -245,8 +255,11 @@ public class Loghme {
     }
 
 
-    public void finalizeOrder() throws IOException, InsufficientMoney {
+    public void finalizeOrder() throws IOException, InsufficientMoney, EmptyCart {
         Cart inProcessCart = this.AppUser.getInProcessCart();
+        if (inProcessCart.getOrders().size() < 1) {
+            throw new EmptyCart("Your cart is empty. Fill it with some food");
+        }
         ObjectMapper mapper = new ObjectMapper();
         float totalPrice = 0;
         for (Order order : inProcessCart.getOrders()) {
@@ -270,16 +283,16 @@ public class Loghme {
 
         try {
             chosenRestaurant = FindRestaurant(inProcessCart.getRestaurantID());
-            this.AssignDeliveryToUser(this.AppUser.getCartsOfUser(),this.AppUser.getCartsOfUser().size()-1,
+            this.AssignDeliveryToUser(this.AppUser.getCartsOfUser(), this.AppUser.getCartsOfUser().size() - 1,
                     chosenRestaurant.getLocation());
-        }catch (NoRestaurant e){
-           try {
-               chosenFoodPartyRestaurants = FindFoodPartyRestaurant(inProcessCart.getRestaurantID());
-               this.AssignDeliveryToUser(this.AppUser.getCartsOfUser(),this.AppUser.getCartsOfUser().size()-1,
-                       chosenFoodPartyRestaurants.getLocation());
-           }catch (NoRestaurant error){
-               error.printStackTrace();
-           }
+        } catch (NoRestaurant e) {
+            try {
+                chosenFoodPartyRestaurants = FindFoodPartyRestaurant(inProcessCart.getRestaurantID());
+                this.AssignDeliveryToUser(this.AppUser.getCartsOfUser(), this.AppUser.getCartsOfUser().size() - 1,
+                        chosenFoodPartyRestaurants.getLocation());
+            } catch (NoRestaurant error) {
+                error.printStackTrace();
+            }
         }
 
 

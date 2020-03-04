@@ -12,7 +12,7 @@
     </style>
 </head>
 <body>
-    <div>restaurant name</div>
+    <div><c:out value="${cart.orders[0].restaurantName}"/></div>
     <ul>
         <c:forEach var="order" items="${cart.orders}">
             <li><c:out value="${order.foodName}"/>:‌ <c:out value="${order.numOfOrder}"/></li>
@@ -22,5 +22,9 @@
     <div>
         status : <c:out value="${cart.status}"/>
     </div>
+        <c:if test = "${cart.getRemainedTimeToArive() < 10000}">
+            <p>Arrive time:  <c:out value = "${cart.getRemainedTimeToArive()}"/><p>
+        </c:if>
+
 </body>
 </html>
