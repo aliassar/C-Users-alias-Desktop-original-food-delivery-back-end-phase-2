@@ -1,9 +1,9 @@
-package IE;
+package IE.ManagersAndSchedulers;
 
+import IE.Loghme;
 import IE.models.Cart;
 import IE.models.Delivery;
 import IE.models.Location;
-import IE.models.Restaurant;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -45,6 +45,7 @@ public class DeliveryManagment implements Runnable {
         deliveries = mapper.readValue(new URL("http://138.197.181.131:8080/deliveries")
                 , new TypeReference<List<Delivery>>() {
                 });
+        System.out.println("entered ManageDelivery");
         if (deliveries.size() != 0){
             Delivery ChosenDelivery = new Delivery() ;
             float ArrivingTime = 999;
@@ -65,6 +66,7 @@ public class DeliveryManagment implements Runnable {
             AllCarts.get(CartIndex).setStatus("Delivery in road");
             ScheduledExecutorService newScheduler;
             newScheduler = Executors.newSingleThreadScheduledExecutor();
+            System.out.println(ArrivingTime);
             newScheduler.schedule(new TerminateDelivery(AllCarts, CartIndex),(int) ArrivingTime,TimeUnit.SECONDS);
             scheduler.shutdownNow();
 

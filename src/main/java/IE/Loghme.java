@@ -2,6 +2,7 @@ package IE;
 
 import IE.CustomSerializer.CustomCartSerializer;
 import IE.Exceptions.*;
+import IE.ManagersAndSchedulers.DeliveryManagment;
 import IE.models.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -46,11 +47,10 @@ public class Loghme {
         FoodPartyRestaurants = foodPartyRestaurants;
     }
     public void AssignDeliveryToUser(ArrayList<Cart> AllCarts,int IndexOfCart, Location restaurantLocation) throws IOException{
-        System.out.println("HI");
         ScheduledExecutorService scheduler;
         scheduler = Executors.newSingleThreadScheduledExecutor();
         ScheduledFuture<?> scheduledFuture = scheduler.scheduleAtFixedRate(new DeliveryManagment(AllCarts,IndexOfCart,
-                scheduler, restaurantLocation), 0, 30, TimeUnit.SECONDS);
+                scheduler, restaurantLocation), 0, 5, TimeUnit.SECONDS);
 
     }
     public float CalculateArrivingTime(Location RestaurantLocation, Delivery delivery){

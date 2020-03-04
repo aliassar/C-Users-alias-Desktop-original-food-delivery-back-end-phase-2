@@ -1,4 +1,4 @@
-package IE;
+package IE.ManagersAndSchedulers;
 
 import IE.models.Cart;
 
@@ -16,6 +16,7 @@ public class TerminateDelivery implements Runnable{
 
     @Override
     public void run()  {
+        System.out.println("entered TerminateDelivery");
         AllCarts.get(CartIndex).setRemainedTimeToArive(0);
         AllCarts.get(CartIndex).setStatus("Delivery completed");
 

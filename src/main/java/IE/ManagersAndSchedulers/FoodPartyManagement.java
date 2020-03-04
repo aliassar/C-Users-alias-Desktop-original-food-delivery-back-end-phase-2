@@ -1,5 +1,6 @@
-package IE;
+package IE.ManagersAndSchedulers;
 
+import IE.Loghme;
 import IE.models.FoodPartyRestaurant;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

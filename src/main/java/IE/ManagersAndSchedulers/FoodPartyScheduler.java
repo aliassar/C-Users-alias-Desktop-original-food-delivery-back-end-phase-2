@@ -1,4 +1,4 @@
-package IE;
+package IE.ManagersAndSchedulers;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -16,7 +16,7 @@ public class FoodPartyScheduler implements ServletContextListener {
         scheduler = Executors.newSingleThreadScheduledExecutor();
         //scheduler.scheduleAtFixedRate(new HourlyJob(), 0, 1, TimeUnit.HOURS);
         //scheduler.scheduleAtFixedRate(new FoodPartyManagement(), 0, 1, TimeUnit.MINUTES);
-        scheduler.scheduleAtFixedRate(new FoodPartyManagement(), 0, 20, TimeUnit.SECONDS);
+        scheduler.scheduleAtFixedRate(new FoodPartyManagement(), 0, 60, TimeUnit.SECONDS);
     }
 
     @Override

@@ -8,13 +8,15 @@
   <component name="ChangeListManager">
     <list default="true" id="ff69a704-a34f-4400-82bc-5864b126d2bf" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IE/DeliveryManagment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/DeliveryManagment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IE/FoodPartyManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/FoodPartyManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IE/DeliveryManagment.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IE/DeliveryManagment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/DeliveryManagment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IE/FoodPartyManagement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IE/FoodPartyManagement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/FoodPartyManagement.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IE/FoodPartyScheduler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IE/FoodPartyScheduler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/FoodPartyScheduler.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/IE/Loghme.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/Loghme.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IE/Servlets/CartServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/Servlets/CartServlet.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IE/models/Cart.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/models/Cart.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IE/models/FoodPartyRestaurants.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/restaurant.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/restaurant.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IE/TerminateDelivery.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/IE/TerminateDelivery.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/TerminateDelivery.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/Loghme.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/Loghme/WEB-INF/classes/IE/Loghme.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/IE/Loghme.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/Loghme.class" afterDir="false" />
     </list>
@@ -25,17 +27,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/IE/Loghme.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3556">
-              <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+            <state relative-caret-position="777">
+              <caret line="48" column="127" selection-start-line="48" selection-start-column="127" selection-end-line="48" selection-end-column="127" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1783#1784#0" expanded="true" />
                 <element signature="e#1818#1819#0" expanded="true" />
-                <element signature="e#8570#8571#0" expanded="true" />
-                <element signature="e#11177#11178#0" expanded="true" />
+                <element signature="e#8586#8587#0" expanded="true" />
+                <element signature="e#11203#11204#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -51,10 +53,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/IE/FoodPartyManagement.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/FoodPartyManagement.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
+            <state relative-caret-position="142">
+              <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/FoodPartyScheduler.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="154">
+              <caret line="14" column="63" lean-forward="true" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -63,10 +77,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/IE/DeliveryManagment.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/DeliveryManagment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="98">
-              <caret line="56" column="111" selection-start-line="56" selection-start-column="111" selection-end-line="56" selection-end-column="111" />
+            <state relative-caret-position="142">
+              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/TerminateDelivery.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -82,15 +108,6 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/IE/Servlets/CartServlet.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="312">
-              <caret line="36" column="47" selection-start-line="36" selection-start-column="47" selection-end-line="36" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -129,15 +146,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/webapp/restaurant.jsp">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="32" column="52" lean-forward="true" selection-start-line="32" selection-start-column="52" selection-end-line="32" selection-end-column="52" />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -164,14 +172,15 @@
         <option value="$PROJECT_DIR$/src/main/java/IE/Exceptions/NoFoodRemained.java" />
         <option value="$PROJECT_DIR$/src/main/java/IE/models/Location.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/IE/TerminateDelivery.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/restaurant.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/IE/models/Cart.java" />
         <option value="$PROJECT_DIR$/src/main/java/IE/Servlets/CartServlet.java" />
         <option value="$PROJECT_DIR$/src/main/java/IE/models/FoodPartyRestaurant.java" />
-        <option value="$PROJECT_DIR$/src/main/java/IE/DeliveryManagment.java" />
         <option value="$PROJECT_DIR$/src/main/java/IE/FoodPartyManagement.java" />
+        <option value="$PROJECT_DIR$/src/main/java/IE/DeliveryManagment.java" />
+        <option value="$PROJECT_DIR$/src/main/java/IE/TerminateDelivery.java" />
         <option value="$PROJECT_DIR$/src/main/java/IE/Loghme.java" />
+        <option value="$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/FoodPartyScheduler.java" />
       </list>
     </option>
   </component>
@@ -233,15 +242,6 @@
               <item name="loghme" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="IE" type="462c0819:PsiDirectoryNode" />
-              <item name="models" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Loghme" type="b2602c69:ProjectViewProjectNode" />
-              <item name="loghme" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="webapp" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -264,7 +264,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583344432254" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1583345168923" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -515,7 +515,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27446000" />
+    <option name="totallyTimeSpent" value="28394000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -527,7 +527,7 @@
       <window_info id="UI Designer" />
       <window_info id="Favorites" side_tool="true" />
       <window_info id="Web" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24966443" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24966443" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Application Servers" weight="0.3286119" />
       <window_info anchor="bottom" id="Terminal" />
@@ -541,7 +541,7 @@
       <window_info anchor="bottom" id="ANTLR Preview" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -782,32 +782,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/IE/FoodPartyScheduler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="11" column="47" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#895#896#0" expanded="true" />
-            <element signature="e#934#935#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
           <caret line="75" column="9" lean-forward="true" selection-start-line="75" selection-start-column="9" selection-end-line="75" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/IE/TerminateDelivery.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -873,30 +851,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/IE/DeliveryManagment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="98">
-          <caret line="56" column="111" selection-start-line="56" selection-start-column="111" selection-end-line="56" selection-end-column="111" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/IE/models/FoodPartyRestaurant.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/IE/FoodPartyManagement.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="27" column="41" selection-start-line="27" selection-start-column="41" selection-end-line="27" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -910,16 +868,56 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/DeliveryManagment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/TerminateDelivery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/FoodPartyManagement.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/IE/Loghme.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3556">
-          <caret line="48" column="30" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+        <state relative-caret-position="777">
+          <caret line="48" column="127" selection-start-line="48" selection-start-column="127" selection-end-line="48" selection-end-column="127" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1783#1784#0" expanded="true" />
             <element signature="e#1818#1819#0" expanded="true" />
-            <element signature="e#8570#8571#0" expanded="true" />
-            <element signature="e#11177#11178#0" expanded="true" />
+            <element signature="e#8586#8587#0" expanded="true" />
+            <element signature="e#11203#11204#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/ManagersAndSchedulers/FoodPartyScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="14" column="63" lean-forward="true" selection-start-line="14" selection-start-column="63" selection-end-line="14" selection-end-column="63" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
