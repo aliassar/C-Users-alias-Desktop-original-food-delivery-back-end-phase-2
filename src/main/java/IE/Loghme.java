@@ -1,13 +1,11 @@
 package IE;
 
-import IE.exceptions.*;
+import IE.Exceptions.*;
 import IE.utils.DeliveryManagment;
 import IE.model.*;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
-import java.net.URL;
+import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.Executors;
@@ -17,38 +15,36 @@ import java.util.concurrent.TimeUnit;
 
 public class Loghme {
     private static Loghme instance;
-    private ArrayList<Restaurant> AllRestaurants;
-    private ArrayList<FoodPartyRestaurant> FoodPartyRestaurants;
+    private RestaurantMapper restaurantMapper;
+    private FoodPartyRestaurantMapper foodPartyRestaurantMapper;
+
+    public User getAppUser() {
+        return AppUser;
+    }
+
     private User AppUser;
 
     public static Loghme getInstance() {
         if (instance == null)
             try {
                 instance = new Loghme();
-            } catch (IOException e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         return instance;
     }
 
-    private Loghme() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        this.AllRestaurants = mapper.readValue(new URL("http://138.197.181.131:8080/restaurants")
-                , new TypeReference<List<Restaurant>>() {
-                });
-        this.AppUser = new User("H", "M", "+0", "test@test.com", 2500000);
-
+    private Loghme() throws SQLException {
+        UserMapper userMapper = UserMapper.getInstance();
+        restaurantMapper = RestaurantMapper.getInstance();
+        foodPartyRestaurantMapper = FoodPartyRestaurantMapper.getInstance();
+        User user = new User("H", "M", "+0", "test@test.com", 2500000);
+        this.AppUser = user;
+        userMapper.insert(user);
     }
 
-    public void setFoodPartyRestaurant(ArrayList<FoodPartyRestaurant> foodPartyRestaurants) {
-        this.FoodPartyRestaurants = foodPartyRestaurants;
-    }
 
-    public ArrayList<FoodPartyRestaurant> getFoodPartyRestaurants() {
-        return  FoodPartyRestaurants;
-    }
-
-    public void AssignDeliveryToUser(ArrayList<Cart> AllCarts, int IndexOfCart, Location restaurantLocation) throws IOException {
+    public void AssignDeliveryToUser(ArrayList<Cart> AllCarts, int IndexOfCart, Location restaurantLocation) {
         ScheduledExecutorService scheduler;
         scheduler = Executors.newSingleThreadScheduledExecutor();
         ScheduledFuture<?> scheduledFuture = scheduler.scheduleAtFixedRate(new DeliveryManagment(AllCarts, IndexOfCart,
@@ -57,7 +53,7 @@ public class Loghme {
     }
 
     public float CalculateArrivingTime(Location RestaurantLocation, Delivery delivery) {
-        float Result = 0;
+        float Result;
         Location UserLocation = new Location(0, 0);
         float Distance = 0;
         Distance += (float) UserLocation.Distance(delivery.getLocation(), RestaurantLocation);
@@ -70,7 +66,7 @@ public class Loghme {
     public float EstimateArivingTime(Location RestaurantLocation) {
         float Result = 60;
         Location UserLocation = new Location(0, 0);
-        float Distance = 0;
+        float Distance;
         Distance = (float) UserLocation.Distance(UserLocation, RestaurantLocation);
         Result += Distance / 5;
         Distance = Distance / 2;
@@ -79,35 +75,14 @@ public class Loghme {
 
     }
 
-
-    //    public void SetDelivery() throws IOException{
-//        ObjectMapper mapper = new ObjectMapper();
-//        this.deliveries = mapper.readValue(new URL("http://138.197.181.131:8080/deliveries")
-//                , new TypeReference<List<Delivery>>() {
-//                });
-//    }
-
-    public ArrayList<Restaurant> getAllRestaurants() {
-        return this.AllRestaurants;
+    public void DecreaseFoodCount(String RestaurantID, FoodParty food) throws MalformedURLException, SQLException {
+        FoodPartyMapper foodPartyMapper = FoodPartyMapper.getInstance();
+        foodPartyMapper.DecreaseFoodCount(RestaurantID, food);
     }
 
-    public void DecreaseFoodCount(String RestaurantID, FoodParty food){
-        int index = 0;
-        for (int i=0; i < FoodPartyRestaurants.size(); i++){
-            if (FoodPartyRestaurants.get(i).getId().equals(RestaurantID)){
-                index = i;
-            }
-        }
-        for (int i=0; i < FoodPartyRestaurants.get(index).getMenu().size(); i++){
-            if (FoodPartyRestaurants.get(index).getMenu().get(i).getName().equals(food.getName())){
-                FoodPartyRestaurants.get(index).getMenu().get(i).decreaseCount();
-            }
-
-        }
-    }
-
-    public Restaurant getRestaurantInfo(String restaurantId) throws OutOfBoundaryLocation, NoRestaurant {
-        for (Restaurant restaurant : this.AllRestaurants) {
+    public Restaurant getRestaurantInfo(String restaurantId) throws OutOfBoundaryLocation, NoRestaurant, MalformedURLException, SQLException {
+        ArrayList<Restaurant> AllRestaurants = this.restaurantMapper.getAll();
+        for (Restaurant restaurant : AllRestaurants) {
             if (restaurant.getId().equals(restaurantId)) {
                 if (restaurant.calculateLocation() < 170) {
                     return restaurant;
@@ -119,13 +94,10 @@ public class Loghme {
         throw new NoRestaurant("no such restaurant found");
     }
 
-    public User getAppUser() {
-        return this.AppUser;
-    }
+    public void FoodPartyaddToCart(FoodParty food, String restaurantID) throws NoRestaurant, WrongFood, DifRestaurants, NoFoodRemained, MalformedURLException, SQLException {
+        ArrayList<FoodPartyRestaurant> FoodPartyRestaurants = foodPartyRestaurantMapper.getAll();
 
-    public void FoodPartyaddToCart(FoodParty food,String restaurantID) throws NoRestaurant, WrongFood, DifRestaurants, NoFoodRemained {
-
-        if (this.FoodPartyRestaurants.size() == 0) {
+        if (FoodPartyRestaurants.size() == 0) {
             throw new NoRestaurant("there is no restaurants to choose");
         }
         if (food.getCount() <= 0) {
@@ -133,17 +105,15 @@ public class Loghme {
         }
 
         boolean UnknownFood = true;
-        FoodPartyRestaurant rest = new FoodPartyRestaurant();
-        for (FoodPartyRestaurant restaurant : this.FoodPartyRestaurants) {
-            if (restaurant.getName().equals(food.getRestaurantName())) {
-                rest = restaurant;
-                UnknownFood = false;
-            }
-        }
-        if (UnknownFood) {
+        FoodPartyRestaurant rest ;
+        ArrayList<FoodPartyRestaurant> foodPartyRestaurants = new ArrayList<>();
+        try {
+            foodPartyRestaurants = foodPartyRestaurantMapper.filter(food.getRestaurantName());
+        } catch (SQLException e){
             throw new NoRestaurant("there is no restaurant with that name");
+        } finally {
+            rest = foodPartyRestaurants.get(0);
         }
-        UnknownFood = true;
         for (int i = 0; i < rest.getMenu().size(); i++) {
             if (rest.getMenu().get(i).getName().equals(food.getName())) {
                 UnknownFood = false;
@@ -169,7 +139,7 @@ public class Loghme {
             if (order.getFoodName().equals(food.getName())) {
                 sameFood = true;
                 order.AddNum();
-                DecreaseFoodCount(restaurantID,food);
+                DecreaseFoodCount(restaurantID, food);
                 return;
             }
         }
@@ -177,7 +147,7 @@ public class Loghme {
             if (sameRestaurant) {
                 Order order = new Order(food.getName(), food.getRestaurantName(), 1, food.getPrice());
                 inProcessCart.addToOrders(order);
-                DecreaseFoodCount(restaurantID,food);
+                DecreaseFoodCount(restaurantID, food);
             } else {
                 throw new DifRestaurants("you can not choose different restaurant");
             }
@@ -186,26 +156,25 @@ public class Loghme {
 
     }
 
-    public void addToCart(Food food, String restaurantID) throws NoRestaurant, WrongFood, DifRestaurants {
+    public void addToCart(Food food, String restaurantID) throws NoRestaurant, WrongFood, DifRestaurants, MalformedURLException, SQLException {
 
+        ArrayList<Restaurant> AllRestaurants = this.restaurantMapper.getAll();
 
         //Check if there is a restaurant there
-        if (this.AllRestaurants.size() == 0) {
+        if (AllRestaurants.size() == 0) {
             throw new NoRestaurant("there is no restaurants to choose");
         }
 
         boolean UnknownFood = true;
-        Restaurant rest = new Restaurant();
-        for (Restaurant restaurant : this.AllRestaurants) {
-            if (restaurant.getName().equals(food.getRestaurantName())) {
-                rest = restaurant;
-                UnknownFood = false;
-            }
-        }
-        if (UnknownFood) {
+        Restaurant rest ;
+        ArrayList<Restaurant> restaurants = new ArrayList<>();
+        try {
+            restaurants = restaurantMapper.filter(food.getRestaurantName());
+        } catch (SQLException e){
             throw new NoRestaurant("there is no restaurant with that name");
+        } finally {
+            rest = restaurants.get(0);
         }
-        UnknownFood = true;
         for (int i = 0; i < rest.getMenu().size(); i++) {
             if (rest.getMenu().get(i).getName().equals(food.getName())) {
                 UnknownFood = false;
@@ -250,22 +219,20 @@ public class Loghme {
         return this.AppUser.getInProcessCart();
     }
 
-    public Restaurant FindRestaurant(String ID) throws NoRestaurant {
-        for (int i = 0; i < this.AllRestaurants.size(); i++) {
-            if (this.AllRestaurants.get(i).getId().equals(ID)) {
-                return this.AllRestaurants.get(i);
-            }
+    public Restaurant FindRestaurant(String ID) throws NoRestaurant, MalformedURLException {
+        try {
+            return restaurantMapper.find(ID);
+        } catch (SQLException e) {
+            throw new NoRestaurant("no such restaurant found");
         }
-        throw new NoRestaurant("no such restaurant found");
     }
 
-    public FoodPartyRestaurant FindFoodPartyRestaurant(String ID) throws NoRestaurant {
-        for (int i = 0; i < this.FoodPartyRestaurants.size(); i++) {
-            if (this.FoodPartyRestaurants.get(i).getId().equals(ID)) {
-                return this.FoodPartyRestaurants.get(i);
-            }
+    public FoodPartyRestaurant FindFoodPartyRestaurant(String ID) throws NoRestaurant, MalformedURLException {
+        try {
+            return foodPartyRestaurantMapper.find(ID);
+        } catch (SQLException e) {
+            throw new NoRestaurant("no such restaurant found");
         }
-        throw new NoRestaurant("no such restaurant found");
     }
 
 
@@ -314,14 +281,17 @@ public class Loghme {
         this.AppUser.AddToWallet(amount);
     }
 
-    public ArrayList<Restaurant> getNearbyRestaurants() {
+    public ArrayList<Restaurant> getNearbyRestaurants() throws MalformedURLException, SQLException {
+        ArrayList<Restaurant> AllRestaurants = this.restaurantMapper.getAll();
+
         ArrayList<Restaurant> selectedRestaurants = new ArrayList<>();
-        for (Restaurant restaurant : this.AllRestaurants) {
+        for (Restaurant restaurant : AllRestaurants) {
             if (restaurant.calculateLocation() <= 170) {
                 selectedRestaurants.add(restaurant);
             }
         }
         return selectedRestaurants;
     }
+
 
 }

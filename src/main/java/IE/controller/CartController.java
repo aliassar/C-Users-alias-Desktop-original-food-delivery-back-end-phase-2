@@ -1,15 +1,18 @@
 package IE.controller;
 
-import IE.exceptions.DifRestaurants;
-import IE.exceptions.NoFoodRemained;
-import IE.exceptions.NoRestaurant;
-import IE.exceptions.WrongFood;
+import IE.Exceptions.DifRestaurants;
+import IE.Exceptions.NoFoodRemained;
+import IE.Exceptions.NoRestaurant;
+import IE.Exceptions.WrongFood;
 import IE.Loghme;
 import IE.model.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.net.MalformedURLException;
+import java.sql.SQLException;
 
 @RestController
 public class CartController {
@@ -23,11 +26,11 @@ public class CartController {
             try {
                 Restaurant chosenRestaurant = loghme.FindRestaurant(cart.getRestaurantID());
                 estimatedArrive = loghme.EstimateArivingTime(chosenRestaurant.getLocation());
-            } catch (NoRestaurant e) {
+            } catch (NoRestaurant | MalformedURLException e) {
                 try {
                     FoodPartyRestaurant chosenFoodPartyRestaurants = loghme.FindFoodPartyRestaurant(cart.getRestaurantID());
                     estimatedArrive = loghme.EstimateArivingTime(chosenFoodPartyRestaurants.getLocation());
-                } catch (NoRestaurant error) {
+                } catch (NoRestaurant | MalformedURLException error) {
                     error.printStackTrace();
                 }
             }
@@ -57,6 +60,8 @@ public class CartController {
         } catch (NoRestaurant | WrongFood | DifRestaurants | NoFoodRemained e) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (SQLException | MalformedURLException e) {
+            e.printStackTrace();
         }
         User user = loghme.getAppUser();
         Cart cart = user.getInProcessCart();
@@ -64,11 +69,11 @@ public class CartController {
         try {
             Restaurant chosenRestaurant = loghme.FindRestaurant(cart.getRestaurantID());
             estimatedArrive = loghme.EstimateArivingTime(chosenRestaurant.getLocation());
-        } catch (NoRestaurant e) {
+        } catch (NoRestaurant | MalformedURLException e) {
             try {
                 FoodPartyRestaurant chosenFoodPartyRestaurants = loghme.FindFoodPartyRestaurant(cart.getRestaurantID());
                 estimatedArrive = loghme.EstimateArivingTime(chosenFoodPartyRestaurants.getLocation());
-            } catch (NoRestaurant error) {
+            } catch (NoRestaurant | MalformedURLException error) {
                 error.printStackTrace();
             }
         }

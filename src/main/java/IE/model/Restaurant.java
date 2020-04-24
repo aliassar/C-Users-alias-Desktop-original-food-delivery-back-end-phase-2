@@ -13,6 +13,17 @@ public class Restaurant {
     private Location location;
     private URL logo;
 
+    public Restaurant(String id, String name, String description, ArrayList<Food> menu, Location location, URL logo) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.menu = menu;
+        this.location = location;
+        this.logo = logo;
+    }
+    public Restaurant(){
+
+    }
 
     public URL getLogo() {
         return logo;

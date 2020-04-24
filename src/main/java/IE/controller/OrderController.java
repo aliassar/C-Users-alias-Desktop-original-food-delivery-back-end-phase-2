@@ -1,7 +1,7 @@
 package IE.controller;
 
 
-import IE.exceptions.*;
+import IE.Exceptions.*;
 import IE.Loghme;
 import IE.model.Cart;
 import IE.model.User;
@@ -32,8 +32,7 @@ public class OrderController {
     public Cart GetOrder(@PathVariable(value = "OrderId") int OrderId){
         Loghme loghme = Loghme.getInstance();
         User user = loghme.getAppUser();
-        Cart cart = user.getCartsOfUser().get(OrderId);
-        return cart;
+        return user.getCartsOfUser().get(OrderId);
 
     }
 

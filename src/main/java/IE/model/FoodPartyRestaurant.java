@@ -1,9 +1,11 @@
 package IE.model;
 
+import java.lang.*;
+
 import java.net.URL;
 import java.util.ArrayList;
 
-public class FoodPartyRestaurant  {
+public class FoodPartyRestaurant {
     private String id;
     private String name;
     private String description;
@@ -11,12 +13,36 @@ public class FoodPartyRestaurant  {
     private Location location;
     private URL logo;
 
+    public FoodPartyRestaurant(String id, String name, String description, ArrayList<FoodParty> menu, Location location, URL logo) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.menu = menu;
+        this.location = location;
+        this.logo = logo;
+    }
+    public FoodPartyRestaurant(){
+
+    }
+
+    public URL getLogo() {
+        return logo;
+    }
+
+    public void setLogo(URL logo) {
+        this.logo = logo;
+    }
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void addToMenu(FoodParty food){
+        menu.add(food);
     }
 
     public String getName() {
@@ -51,14 +77,6 @@ public class FoodPartyRestaurant  {
         this.location = location;
     }
 
-    public URL getLogo() {
-        return logo;
-    }
-
-    public void setLogo(URL logo) {
-        this.logo = logo;
-    }
-
     public double calculateLocation(){
         float x = Math.abs(this.location.getX() - 0) * Math.abs(this.location.getX() - 0);
         float y = Math.abs(this.location.getY() - 0) * Math.abs(this.location.getY() - 0);
@@ -66,6 +84,7 @@ public class FoodPartyRestaurant  {
         return result;
 
     }
+
     public double calculatePopularity(){
         float averageFoodPopularity = 0;
         for (Food food : this.menu) {
@@ -73,7 +92,10 @@ public class FoodPartyRestaurant  {
         }
         averageFoodPopularity = averageFoodPopularity/this.menu.size();
         double popularity = averageFoodPopularity/this.calculateLocation();
-        return Math.round(popularity*1000)/1000.0;
+        return popularity;
 
     }
+
+
+
 }

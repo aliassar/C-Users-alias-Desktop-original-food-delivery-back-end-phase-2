@@ -4,7 +4,13 @@ public class Delivery {
     private String ID;
     private Location location;
     private int velocity;
-
+    public Delivery(String ID,Location location,int velocity){
+        this.ID=ID;
+        this.location=location;
+        this.velocity=velocity;
+    }
+    public Delivery(){
+    }
     public String getID() {
         return ID;
     }

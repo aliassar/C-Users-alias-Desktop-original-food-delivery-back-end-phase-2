@@ -1,4 +1,4 @@
-package IE.exceptions;
+package IE.Exceptions;
 
 public class NoFoodRemained extends Exception {
     public NoFoodRemained(String errorMessage){

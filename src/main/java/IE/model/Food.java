@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonSetter;
 import java.net.URL;
 
 public class Food {
+    private String restaurantId;
     private String name;
     private String description;
     private String restaurantName;
@@ -20,7 +21,15 @@ public class Food {
         this.restaurantName = restaurantName;
         this.price = Price;
     }
-
+    public Food(String name, String description, String restaurantName,float price, float popularity, URL image, String Type) {
+        this.name = name;
+        this.description = description;
+        this.restaurantName = restaurantName;
+        this.price = price;
+        this.popularity = popularity;
+        this.image = image;
+        this.Type = Type;
+    }
     public Food() {
     }
 
@@ -83,5 +92,13 @@ public class Food {
     @JsonSetter("foodName")
     public void setTheName(String name) {
         this.name = name;
+    }
+
+    public String getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(String restaurantId) {
+        this.restaurantId = restaurantId;
     }
 }

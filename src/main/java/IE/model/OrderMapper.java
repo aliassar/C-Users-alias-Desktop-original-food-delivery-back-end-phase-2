@@ -4,10 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderMapper extends Mapper<Order, Integer> {
+public class OrderMapper extends Mapper<Order, Integer, Integer> {
 
     private static OrderMapper instance;
-    public static final String COLUMNS = " foodName, restaurantName, cost, numOfOrder ";
+    public static final String COLUMNS = " cartId, foodName, restaurantName, cost, numOfOrder ";
     public static final String TABLE_NAME = "orders";
 
     public static OrderMapper getInstance() {
@@ -27,10 +27,11 @@ public class OrderMapper extends Mapper<Order, Integer> {
                 "CREATE TABLE IF NOT EXISTS  %s " +
                         "(" +
                         "id integer NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                        "cartId integer, " +
                         "foodName varchar(100), " +
                         "restaurantName varchar(100), " +
                         "cost float, " +
-                        "numOfOrder integer, " +
+                        "numOfOrder integer " +
                         ");",
                 TABLE_NAME));
         st.close();
@@ -49,9 +50,10 @@ public class OrderMapper extends Mapper<Order, Integer> {
         return "INSERT INTO " + TABLE_NAME +
                 "(" + COLUMNS + ")" + " VALUES " +
                 "(" +
-                '"' + order.getFoodName() + '"' +", "+
-                '"' + order.getRestaurantName() + '"' +", "+
-                order.getCost() +", "+
+                order.getCartId() + ", " +
+                '"' + order.getFoodName() + '"' + ", " +
+                '"' + order.getRestaurantName() + '"' + ", " +
+                order.getCost() + ", " +
                 order.getNumOfOrder() +
                 ");";
     }
@@ -65,15 +67,24 @@ public class OrderMapper extends Mapper<Order, Integer> {
     @Override
     protected Order convertResultSetToObject(ResultSet rs) throws SQLException {
         return new Order(
-                rs.getString(1),
-                rs.getString(2),
-                rs.getInt(3),
-                rs.getFloat(4)
+                rs.getString(3),
+                rs.getString(4),
+                rs.getInt(5),
+                rs.getFloat(6)
         );
     }
-    protected String getCartOrders(Integer cartId) {
+    @Override
+    protected String getAllStatement() {
+        return "SELECT * FROM " + TABLE_NAME + ";";
+    }
+    @Override
+    protected String getFilterStatement(Integer cartId) {
         return "SELECT " + COLUMNS +
                 " FROM " + TABLE_NAME +
                 " WHERE cartId = " + cartId.toString() + ";";
+    }
+    @Override
+    protected void getInsertCallBack(Order order) {
+
     }
 }

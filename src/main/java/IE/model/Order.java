@@ -58,4 +58,8 @@ public class Order {
     public void setCartId(int cartId) {
         this.cartId = cartId;
     }
+
+    public int getCartId() {
+        return cartId;
+    }
 }

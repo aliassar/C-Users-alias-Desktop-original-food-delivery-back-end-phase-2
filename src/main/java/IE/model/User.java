@@ -1,6 +1,6 @@
 package IE.model;
 
-import IE.exceptions.NoOrder;
+import IE.Exceptions.NoOrder;
 
 import java.util.ArrayList;
 
@@ -25,6 +25,15 @@ public class User {
     }
 
     public User() {
+    }
+
+    public User(ArrayList<Cart> cartsOfUser, String fname, String lname, String phoneNumber, String email, float wallet) {
+        this.cartsOfUser = cartsOfUser;
+        this.fname = fname;
+        this.lname = lname;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.wallet = wallet;
     }
 
     public void AddToWallet(float amount) {
