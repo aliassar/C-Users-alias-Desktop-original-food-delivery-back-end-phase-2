@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 @RestController
 public class OrderController {
@@ -44,13 +45,11 @@ public class OrderController {
             User user = loghme.getAppUser();
             Cart cart = user.getLastCart();
             return ResponseEntity.status(HttpStatus.OK).body(cart);
-        } catch (InsufficientMoney | NoOrder | EmptyCart |IOException e ) {
+        } catch (InsufficientMoney | NoOrder | EmptyCart | IOException | SQLException e ) {
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
 
         }
 
     }
-
-
 }

@@ -1,15 +1,14 @@
 package IE;
 
-import IE.utils.customSerializer.CustomCartSerializer;
 import IE.exceptions.*;
-import IE.utils.managersAndSchedulers.DeliveryManagment;
+import IE.utils.DeliveryManagment;
 import IE.model.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
@@ -20,7 +19,6 @@ public class Loghme {
     private static Loghme instance;
     private ArrayList<Restaurant> AllRestaurants;
     private ArrayList<FoodPartyRestaurant> FoodPartyRestaurants;
-    //private ArrayList<Delivery> deliveries;
     private User AppUser;
 
     public static Loghme getInstance() {
@@ -30,7 +28,6 @@ public class Loghme {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        //instance = new Loghme();
         return instance;
     }
 
@@ -272,12 +269,12 @@ public class Loghme {
     }
 
 
-    public void finalizeOrder() throws IOException, InsufficientMoney, EmptyCart {
+    public void finalizeOrder() throws IOException, InsufficientMoney, EmptyCart, SQLException {
         Cart inProcessCart = this.AppUser.getInProcessCart();
         if (inProcessCart.getOrders().size() < 1) {
             throw new EmptyCart("Your cart is empty. Fill it with some food");
         }
-        ObjectMapper mapper = new ObjectMapper();
+        CartMapper mapper = CartMapper.getInstance();
         float totalPrice = 0;
         for (Order order : inProcessCart.getOrders()) {
             totalPrice += (order.getCost() * order.getNumOfOrder());
@@ -285,15 +282,11 @@ public class Loghme {
         if (this.AppUser.getWallet() < totalPrice) {
             throw new InsufficientMoney("Insufficient money");
         }
-        SimpleModule module = new SimpleModule();
-        module.addSerializer(Cart.class, new CustomCartSerializer());
-        mapper.registerModule(module);
-        mapper.writeValueAsString(inProcessCart);
-        System.out.println("Order recorded successfully");
         inProcessCart.setStatus("finding delivery");
+        mapper.insert(inProcessCart);
+        System.out.println("Order recorded successfully");
         this.AppUser.setWallet(this.AppUser.getWallet() - totalPrice);
         this.AppUser.newProcessedCart(inProcessCart);
-
         Restaurant chosenRestaurant;
         FoodPartyRestaurant chosenFoodPartyRestaurants;
         System.out.println(inProcessCart.getRestaurantID());

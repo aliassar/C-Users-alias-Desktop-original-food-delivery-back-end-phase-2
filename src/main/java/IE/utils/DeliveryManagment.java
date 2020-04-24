@@ -1,4 +1,4 @@
-package IE.utils.managersAndSchedulers;
+package IE.utils;
 
 import IE.Loghme;
 import IE.model.Cart;
@@ -62,7 +62,7 @@ public class DeliveryManagment implements Runnable {
                     }
                 }
             }
-            AllCarts.get(CartIndex).setRemainedTimeToArive(ArrivingTime);
+            AllCarts.get(CartIndex).setRemainedTimeToArrive(ArrivingTime);
             AllCarts.get(CartIndex).setStatus("Delivery in road");
             ScheduledExecutorService newScheduler;
             newScheduler = Executors.newSingleThreadScheduledExecutor();

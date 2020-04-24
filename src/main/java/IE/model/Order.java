@@ -2,6 +2,7 @@ package IE.model;
 
 
 public class Order {
+    private int cartId;
     private String foodName;
     private String restaurantName;
     private float cost;
@@ -52,5 +53,9 @@ public class Order {
 
     public void AddNum() {
         this.numOfOrder += 1;
+    }
+
+    public void setCartId(int cartId) {
+        this.cartId = cartId;
     }
 }

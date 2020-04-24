@@ -17,8 +17,7 @@ public class RestaurantController {
     @RequestMapping(value = "/restaurants",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Restaurant> GetAllRestaurants(){
         Loghme loghme = Loghme.getInstance();
-        ArrayList<Restaurant> restaurants = loghme.getNearbyRestaurants();
-        return restaurants;
+        return loghme.getNearbyRestaurants();
     }
 
     @RequestMapping(value = "/restaurants/{restaurantId}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

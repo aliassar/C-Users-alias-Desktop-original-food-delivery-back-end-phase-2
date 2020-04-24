@@ -4,12 +4,20 @@ import java.util.ArrayList;
 
 public class Cart {
     private ArrayList<Order> orders;
-    private float remainedTimeToArive = 10000;
+    private float remainedTimeToArrive = 10000;
     private String Status;
     private String restaurantID;
+
     public Cart() {
         this.Status = "inProcess";
         this.orders = new ArrayList<>();
+    }
+
+    public Cart(ArrayList<Order> orders, float remainedTimeToArrive, String Status, String restaurantID) {
+        this.orders = orders;
+        this.remainedTimeToArrive = remainedTimeToArrive;
+        this.Status = Status;
+        this.restaurantID = restaurantID;
     }
 
     public void setOrders(ArrayList<Order> orders) {
@@ -24,12 +32,12 @@ public class Cart {
         this.restaurantID = restaurantID;
     }
 
-    public float getRemainedTimeToArive() {
-        return remainedTimeToArive;
+    public float getRemainedTimeToArrive() {
+        return remainedTimeToArrive;
     }
 
-    public void setRemainedTimeToArive(float remainedTimeToArive) {
-        this.remainedTimeToArive = remainedTimeToArive;
+    public void setRemainedTimeToArrive(float remainedTimeToArrive) {
+        this.remainedTimeToArrive = remainedTimeToArrive;
     }
 
     public ArrayList<Order> getOrders() {

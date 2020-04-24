@@ -56,6 +56,9 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.2.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-core:5.2.2.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-jcl:5.2.2.RELEASE" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.19" />
+          <element id="library" level="project" name="Maven: commons-dbcp:commons-dbcp:1.4" />
+          <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.6" />
         </element>
       </element>
       <element id="directory" name="META-INF">

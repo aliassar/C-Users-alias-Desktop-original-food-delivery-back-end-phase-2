@@ -1,4 +1,4 @@
-package IE.utils.managersAndSchedulers;
+package IE.utils;
 
 import IE.Loghme;
 import IE.model.FoodPartyRestaurant;
