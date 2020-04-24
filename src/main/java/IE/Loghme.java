@@ -1,9 +1,9 @@
 package IE;
 
-import IE.CustomSerializer.CustomCartSerializer;
-import IE.Exceptions.*;
-import IE.ManagersAndSchedulers.DeliveryManagment;
-import IE.models.*;
+import IE.utils.customSerializer.CustomCartSerializer;
+import IE.exceptions.*;
+import IE.utils.managersAndSchedulers.DeliveryManagment;
+import IE.model.*;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
