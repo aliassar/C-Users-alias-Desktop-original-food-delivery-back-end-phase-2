@@ -11,6 +11,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
+import java.util.ArrayList;
+
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 
@@ -41,45 +44,55 @@ public class CartController {
         return cart;
     }
     @RequestMapping(value = "/cart",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> AddToCart(@RequestParam(value = "count") String count,
-                                       @RequestParam(value = "name") String name,
-                                       @RequestParam(value = "restaurantName") String restaurantName,
-                                       @RequestParam(value = "ID") String restaurantID,
-                                       @RequestParam(value = "type") String type,
-                                       @RequestParam(value = "oldPrice") String oldPrice,
-                                       @RequestParam(value = "price") float price) {
+    public ResponseEntity<?> AddToCart(@RequestParam(value = "orders") ArrayList<Food> orders)
+    {
         Loghme loghme = Loghme.getInstance();
-        try {
-            if(type!=null && type.equals("foodParty")){
-                FoodParty foodParty = new FoodParty(name, restaurantName, price,Float.parseFloat(oldPrice),Integer.parseInt(count));
-                loghme.FoodPartyaddToCart(foodParty,restaurantID);
-            }
-            else{
-                Food food = new Food(name, restaurantName, price);
-                loghme.addToCart(food, restaurantID);
-            }
-        } catch (NoRestaurant | WrongFood | DifRestaurants | NoFoodRemained e) {
-            e.printStackTrace();
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
-        } catch (SQLException | MalformedURLException e) {
-            e.printStackTrace();
-        }
-        User user = loghme.getAppUser();
-        Cart cart = user.getInProcessCart();
-        float estimatedArrive = 10000;
-        try {
-            Restaurant chosenRestaurant = loghme.FindRestaurant(cart.getRestaurantID());
-            estimatedArrive = loghme.EstimateArivingTime(chosenRestaurant.getLocation());
-        } catch (NoRestaurant | MalformedURLException e) {
+        boolean ErrorDetected = false;
+        for (int i=0; i<orders.size(); i++){
             try {
-                FoodPartyRestaurant chosenFoodPartyRestaurants = loghme.FindFoodPartyRestaurant(cart.getRestaurantID());
-                estimatedArrive = loghme.EstimateArivingTime(chosenFoodPartyRestaurants.getLocation());
-            } catch (NoRestaurant | MalformedURLException error) {
-                error.printStackTrace();
+                loghme.addToCart(orders.get(i), orders.get(i).getRestaurantName());
+
+            }catch (NoRestaurant | WrongFood | DifRestaurants e) {
+                e.printStackTrace();
+                ErrorDetected = true;
+            }catch (SQLException | MalformedURLException e) {
+                e.printStackTrace();
             }
         }
-        return ResponseEntity.status(HttpStatus.OK).body(cart);
+        float estimatedArrive = 10000;
+        if (ErrorDetected){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(estimatedArrive);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.OK).body(estimatedArrive);
+        }
 
+    }
+
+    @RequestMapping(value = "/cart/foodparty",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> AddToCartFoodParty(@RequestParam(value = "orders") ArrayList<FoodParty> orders)
+    {
+        Loghme loghme = Loghme.getInstance();
+        boolean ErrorDetected = false;
+        for (int i=0; i<orders.size(); i++){
+            try {
+                loghme.FoodPartyaddToCart(orders.get(i), orders.get(i).getRestaurantName());
+                loghme.addToCart(orders.get(i), orders.get(i).getRestaurantName());
+
+            }catch (NoRestaurant | WrongFood | DifRestaurants | NoFoodRemained e) {
+                e.printStackTrace();
+                ErrorDetected = true;
+            }catch (SQLException | MalformedURLException e) {
+                e.printStackTrace();
+            }
+        }
+        float estimatedArrive = 10000;
+        if (ErrorDetected){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(estimatedArrive);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.OK).body(estimatedArrive);
+        }
 
     }
 }
