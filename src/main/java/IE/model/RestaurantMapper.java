@@ -39,10 +39,10 @@ public class RestaurantMapper extends Mapper<Restaurant, String, String> {
                         "(" +
                         "id varchar(100) NOT NULL PRIMARY KEY, " +
                         "name varchar(100), " +
-                        "description varchar(100), " +
+                        "description varchar(500), " +
                         "x float, " +
                         "y float, " +
-                        "logo varchar(200) " +
+                        "logo varchar(500) " +
                         ");",
                 TABLE_NAME));
         st.close();
@@ -105,7 +105,7 @@ public class RestaurantMapper extends Mapper<Restaurant, String, String> {
     @Override
     protected void getInsertCallBack(Restaurant restaurant) throws SQLException {
         FoodMapper foodMapper = FoodMapper.getInstance();
-        String restaurantId = getLastId().getString(1);
+        String restaurantId =  restaurant.getId();
         for (int i = 0; i < restaurant.getMenu().size(); i++) {
             Food food = restaurant.getMenu().get(i);
             food.setRestaurantId(restaurantId);

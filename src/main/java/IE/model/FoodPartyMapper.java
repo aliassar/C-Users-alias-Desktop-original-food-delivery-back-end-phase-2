@@ -6,7 +6,7 @@ import java.sql.*;
 
 public class FoodPartyMapper extends Mapper<FoodParty, Integer, String> {
     private static FoodPartyMapper instance;
-    public static final String COLUMNS = " restaurantId, name, description, restaurantName, price, popularity, image, Type, oldPrice, count ";
+    public static final String COLUMNS = " name, restaurantId, description, restaurantName, price, popularity, image, Type, oldPrice, count ";
     public static final String TABLE_NAME = "foodparties";
 
     public static FoodPartyMapper getInstance() {
@@ -20,26 +20,31 @@ public class FoodPartyMapper extends Mapper<FoodParty, Integer, String> {
     }
 
     private FoodPartyMapper() throws SQLException {
-        Connection con = ConnectionPool.getConnection();
-        Statement st = con.createStatement();
-        st.executeUpdate(String.format(
-                "CREATE TABLE IF NOT EXISTS  %s " +
-                        "(" +
-                        "id integer NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
-                        "restaurantId varchar(100), " +
-                        "name varchar(100), " +
-                        "description varchar(100), " +
-                        "restaurantName varchar(100), " +
-                        "price float, " +
-                        "popularity float, " +
-                        "image varchar(200), " +
-                        "Type varchar(100) " +
-                        "oldPrice float, " +
-                        "count integer, " +
-                        ");",
-                TABLE_NAME));
-        st.close();
-        con.close();
+
+        try{
+            Connection con = ConnectionPool.getConnection();
+            Statement st = con.createStatement();
+            st.executeUpdate(String.format(
+                    "CREATE TABLE IF NOT EXISTS  %s " +
+                            "(" +
+                            "id integer NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                            "name varchar(100), " +
+                            "restaurantId varchar(100), " +
+                            "description varchar(500), " +
+                            "restaurantName varchar(100), " +
+                            "price float, " +
+                            "popularity float, " +
+                            "image varchar(200), " +
+                            "Type varchar(100), " +
+                            "oldPrice float, " +
+                            "count integer " +
+                            ");",
+                    TABLE_NAME));
+            st.close();
+            con.close();
+        } catch (SQLException ex){
+            System.out.println("error in query.");
+        }
     }
 
     @Override
@@ -54,8 +59,8 @@ public class FoodPartyMapper extends Mapper<FoodParty, Integer, String> {
         return "INSERT INTO " + TABLE_NAME +
                 "(" + COLUMNS + ")" + " VALUES " +
                 "(" +
-                '"' + food.getRestaurantId() + '"' + ", " +
                 '"' + food.getName() + '"' + ", " +
+                '"' + food.getRestaurantId() + '"' + ", " +
                 '"' + food.getDescription() + '"' + ", " +
                 '"' + food.getRestaurantName() + '"' + ", " +
                 food.getPrice() + ", " +
@@ -75,17 +80,17 @@ public class FoodPartyMapper extends Mapper<FoodParty, Integer, String> {
 
     @Override
     protected FoodParty convertResultSetToObject(ResultSet rs) throws SQLException, MalformedURLException {
-        URL url = new URL(rs.getString(8));
+        URL url = new URL(rs.getString(6));
         return new FoodParty(
+                rs.getString(1),
+                rs.getString(2),
                 rs.getString(3),
-                rs.getString(4),
-                rs.getString(5),
-                rs.getFloat(6),
-                rs.getFloat(7),
+                rs.getFloat(4),
+                rs.getFloat(5),
                 url,
-                rs.getString(9),
-                rs.getFloat(10),
-                rs.getInt(11)
+                rs.getString(7),
+                rs.getFloat(8),
+                rs.getInt(9)
         );
     }
 
@@ -137,12 +142,10 @@ public class FoodPartyMapper extends Mapper<FoodParty, Integer, String> {
                     con.close();
                 } catch (SQLException ex) {
                     System.out.println("error in Mapper.getLastId query.");
-                    throw ex;
                 }
 
             } catch (SQLException | MalformedURLException ex) {
                 System.out.println("error in Mapper.getLastId query.");
-                throw ex;
             }
         }
     }

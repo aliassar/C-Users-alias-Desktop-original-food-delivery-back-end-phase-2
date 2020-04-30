@@ -21,7 +21,7 @@ public class Food {
         this.restaurantName = restaurantName;
         this.price = Price;
     }
-    public Food(String name, String description, String restaurantName,float price, float popularity, URL image, String Type) {
+    public Food(String name, String restaurantId, String description,String restaurantName,float price, float popularity, URL image, String Type) {
         this.name = name;
         this.description = description;
         this.restaurantName = restaurantName;
@@ -29,6 +29,7 @@ public class Food {
         this.popularity = popularity;
         this.image = image;
         this.Type = Type;
+        this.restaurantId = restaurantId;
     }
     public Food() {
     }

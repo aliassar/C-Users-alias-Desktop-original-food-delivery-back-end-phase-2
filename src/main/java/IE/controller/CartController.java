@@ -16,6 +16,7 @@ import java.sql.SQLException;
 
 @RestController
 public class CartController {
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/cart",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Cart GetCart() {
         Loghme loghme = Loghme.getInstance();

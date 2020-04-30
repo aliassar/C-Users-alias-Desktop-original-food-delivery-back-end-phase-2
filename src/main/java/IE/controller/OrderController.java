@@ -15,6 +15,7 @@ import java.sql.SQLException;
 
 @RestController
 public class OrderController {
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/order",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> GetAllOrders() {
         Loghme loghme = Loghme.getInstance();

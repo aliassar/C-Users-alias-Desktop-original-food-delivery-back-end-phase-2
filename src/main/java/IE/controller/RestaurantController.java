@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 @RestController
 public class RestaurantController {
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/restaurants",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Restaurant> GetAllRestaurants() throws MalformedURLException, SQLException {
         Loghme loghme = Loghme.getInstance();

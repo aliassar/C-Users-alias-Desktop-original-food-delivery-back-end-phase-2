@@ -36,7 +36,6 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
                         "wallet float " +
                         ");",
                 TABLE_NAME));
-        st.close();
         con.close();
     }
 
@@ -91,7 +90,7 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
 
     protected void getInsertCallBack(User user) throws SQLException {
         CartMapper cartMapper = CartMapper.getInstance();
-        int userId = getLastId().getInt(1);
+        int userId = getLastIdInt();
         for (int i = 0; i < user.getCartsOfUser().size(); i++) {
             Cart cart = user.getCartsOfUser().get(i);
             cart.setUserId(userId);

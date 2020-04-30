@@ -91,7 +91,7 @@ public class CartMapper extends Mapper<Cart, Integer, Integer> {
     @Override
     protected void getInsertCallBack(Cart cart) throws SQLException {
         OrderMapper orderMapper = OrderMapper.getInstance();
-        int cartId = getLastId().getInt(1);
+        int cartId = getLastIdInt();
         for (int i = 0; i < cart.getOrders().size(); i++) {
             Order order = cart.getOrders().get(i);
             order.setCartId(cartId);

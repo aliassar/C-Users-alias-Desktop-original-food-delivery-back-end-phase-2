@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class UserController {
+    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/user",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public User GetUser() {
         Loghme loghme = Loghme.getInstance();

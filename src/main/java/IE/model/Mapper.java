@@ -37,9 +37,11 @@ public abstract class Mapper<T, I, K> {
             ResultSet resultSet;
             try {
                 resultSet = st.executeQuery();
+                if (resultSet.next()) {
+                    return convertResultSetToObject(resultSet);
+                }
                 return convertResultSetToObject(resultSet);
             } catch (SQLException | MalformedURLException ex) {
-                System.out.println("error in Mapper.findByID query.");
                 throw ex;
             }
         }
@@ -56,7 +58,6 @@ public abstract class Mapper<T, I, K> {
                 con.close();
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.insert query.");
-                throw ex;
             }
         }
     }
@@ -71,7 +72,6 @@ public abstract class Mapper<T, I, K> {
                 con.close();
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.delete query.");
-                throw ex;
             }
         }
     }
@@ -86,10 +86,12 @@ public abstract class Mapper<T, I, K> {
                 resultSet = st.executeQuery();
                 while (resultSet.next())
                     result.add(convertResultSetToObject(resultSet));
+                st.close();
+                con.close();
                 return result;
             } catch (SQLException | MalformedURLException ex) {
                 System.out.println("error in Mapper.getAll query.");
-                throw ex;
+                return null;
             }
         }
     }
@@ -104,15 +106,17 @@ public abstract class Mapper<T, I, K> {
                 resultSet = st.executeQuery();
                 while (resultSet.next())
                     result.add(convertResultSetToObject(resultSet));
+                st.close();
+                con.close();
                 return result;
             } catch (SQLException | MalformedURLException ex) {
-                System.out.println("error in Mapper.getLastId query.");
-                throw ex;
+                System.out.println("error in Mapper.filter query.");
+                return null;
             }
         }
     }
 
-    public ResultSet getLastId() throws SQLException {
+    public int getLastIdInt() throws SQLException {
         String statement = "SELECT LAST_INSERT_ID()";
         try (Connection con = ConnectionPool.getConnection();
              PreparedStatement st = con.prepareStatement(statement);
@@ -120,10 +124,32 @@ public abstract class Mapper<T, I, K> {
             ResultSet resultSet;
             try {
                 resultSet = st.executeQuery();
-                return resultSet;
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);
+                }
+                return 0;
             } catch (SQLException ex) {
                 System.out.println("error in Mapper.getLastId query.");
-                throw ex;
+                return 0;
+            }
+        }
+    }
+
+    public String getLastIdString() throws SQLException {
+        String statement = "SELECT LAST_INSERT_ID()";
+        try (Connection con = ConnectionPool.getConnection();
+             PreparedStatement st = con.prepareStatement(statement);
+        ) {
+            ResultSet resultSet;
+            try {
+                resultSet = st.executeQuery();
+                if (resultSet.next()) {
+                    return resultSet.getString(1);
+                }
+                return "";
+            } catch (SQLException ex) {
+                System.out.println("error in Mapper.getLastId query.");
+                return "";
             }
         }
     }
