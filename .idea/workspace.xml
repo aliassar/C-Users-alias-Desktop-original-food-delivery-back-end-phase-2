@@ -2,18 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="79d1e585-5a16-4c6a-b42f-082474cebb63" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/IE/JJWT/Encode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/IE/JJWT/Validate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Loghme_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/Loghme_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/loghme.iml" beforeDir="false" afterPath="$PROJECT_DIR$/loghme.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IE/controller/CartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/controller/CartController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/IE/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/IE/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/IE/Exceptions/DifRestaurants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/Exceptions/DifRestaurants.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/IE/Exceptions/EmptyCart.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/Exceptions/EmptyCart.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/IE/Exceptions/InsufficientMoney.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/Exceptions/InsufficientMoney.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/IE/Exceptions/NoRestaurant.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/Exceptions/NoRestaurant.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/IE/Exceptions/OutOfBoundaryLocation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/Exceptions/OutOfBoundaryLocation.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/IE/Exceptions/WrongFood.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/Exceptions/WrongFood.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/IE/Loghme.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/IE/Loghme.class" afterDir="false" />
     </list>
+    <ignored path="$PROJECT_DIR$/target/" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,10 +42,28 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/IE/Loghme.java">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4148">
-              <caret line="244" column="29" selection-start-line="244" selection-start-column="29" selection-end-line="244" selection-end-column="29" />
+            <state relative-caret-position="216">
+              <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/loghme.iml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-679">
+              <caret line="38" column="107" selection-start-line="38" selection-start-column="107" selection-end-line="38" selection-end-column="107" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/IE/controller/CartController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1411">
+              <caret line="83" column="37" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -50,35 +74,29 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/IE/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="35" column="10" selection-start-line="35" selection-start-column="10" selection-end-line="35" selection-end-column="10" />
+            <state relative-caret-position="100">
+              <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/IE/controller/OrderController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/IE/JJWT/Encode.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/IE/model/User.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+            <state relative-caret-position="221">
+              <caret line="49" column="41" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="41" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/IE/controller/CartController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/IE/JJWT/Validate.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-136">
-              <caret line="49" column="38" lean-forward="true" selection-start-line="49" selection-start-column="38" selection-end-line="49" selection-end-column="38" />
+            <state relative-caret-position="222">
+              <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -87,37 +105,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/IE/model/Order.java">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/String.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+            <state relative-caret-position="149">
+              <caret line="914" column="18" selection-start-line="914" selection-start-column="18" selection-end-line="914" selection-end-column="18" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/IE/model/Food.java">
+        <entry file="jar://$MAVEN_REPOSITORY$/io/jsonwebtoken/jjwt-api/0.11.1/jjwt-api-0.11.1.jar!/io/jsonwebtoken/SignatureAlgorithm.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+            <state relative-caret-position="102">
+              <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/IE/model/Mapper.java">
+        <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/Date.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="42" column="59" selection-start-line="42" selection-start-column="59" selection-end-line="42" selection-end-column="59" />
+            <state relative-caret-position="185">
+              <caret line="176" column="11" selection-start-line="176" selection-start-column="11" selection-end-line="176" selection-end-column="11" />
+              <folding>
+                <element signature="e#6390#6391#0" expanded="true" />
+                <element signature="e#6438#6439#0" expanded="true" />
+                <element signature="e#6844#6845#0" expanded="true" />
+                <element signature="e#6875#6876#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/IE/model/FoodPartyRestaurant.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/IE/utils/DeliveryManagment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+            <state relative-caret-position="238">
+              <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -138,6 +162,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/main/java/IE/controller/CartController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/IE/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/IE/JJWT/Encode.java" />
+        <option value="$PROJECT_DIR$/src/main/java/IE/JJWT/Validate.java" />
       </list>
     </option>
   </component>
@@ -147,6 +175,12 @@
         <option name="importAutomatically" value="true" />
       </MavenImportingSettings>
     </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="85" />
+    <option name="y" value="25" />
+    <option name="width" value="1750" />
+    <option name="height" value="980" />
   </component>
   <component name="ProjectId" id="1ayp0JwefB0LmjcYQujP6htzLG5" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -195,7 +229,7 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="IE" type="462c0819:PsiDirectoryNode" />
-              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="JJWT" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -224,11 +258,12 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/IE/model" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1588548494205" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Loghme_PHase_7/loghme" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="project.structure.side.proportion" value="0.198" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -253,7 +288,20 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Encode">
+    <configuration name="Encode" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="IE.JJWT.Encode" />
+      <module name="Loghme" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="IE.JJWT.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Spring" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="Loghme" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="IE.controller.RestServiceApplication" />
@@ -262,6 +310,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Encode" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -283,11 +336,27 @@
       <option name="project" value="LOCAL" />
       <updated>1587719634174</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Merge branch 'debug'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/IE/Loghme.java&#10;#&#9;src/main/java/IE/controller/CartController.java&#10;#&#9;target/classes/IE/Loghme.class">
+      <created>1588252782898</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1588252782898</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1125000" />
+    <option name="totallyTimeSpent" value="22917000" />
+  </component>
+  <component name="TodoView" selected-index="1">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
@@ -307,16 +376,16 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Spring" order="7" weight="0.3286119" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3286119" />
+      <window_info active="true" anchor="bottom" id="TODO" order="6" sideWeight="0.49932885" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Spring" order="7" sideWeight="0.49932885" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.49932885" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Tool Output" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="12" />
+      <window_info anchor="bottom" id="Tool Output" order="10" sideWeight="0.49932885" weight="0.14447592" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.50067115" side_tool="true" weight="0.14447592" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3286119" />
       <window_info anchor="bottom" id="Java Enterprise" order="13" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="14" weight="0.3286119" />
-      <window_info active="true" anchor="bottom" id="Version Control" order="15" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Version Control" order="15" sideWeight="0.49932885" weight="0.3286119" />
       <window_info anchor="bottom" id="ANTLR Preview" order="16" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -371,136 +440,313 @@
       <path value="$PROJECT_DIR$/complete" />
     </ignored-roots>
     <MESSAGE value="Fix main spring server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix main spring server" />
+    <MESSAGE value="Merge branch 'debug'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/IE/Loghme.java&#10;#&#9;src/main/java/IE/controller/CartController.java&#10;#&#9;target/classes/IE/Loghme.class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'debug'&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;src/main/java/IE/Loghme.java&#10;#&#9;src/main/java/IE/controller/CartController.java&#10;#&#9;target/classes/IE/Loghme.class" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="361" y="71" key="#Project_Structure" timestamp="1587739740828">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="71" key="#Project_Structure/0.0.1536.824@0.0.1536.824" timestamp="1587739740828" />
-    <state x="361" y="71" key="#SQL_Dialects" timestamp="1588238135888">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="71" key="#SQL_Dialects/0.0.1536.824@0.0.1536.824" timestamp="1588238135888" />
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1587722561210">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1587722561210" />
-    <state x="574" y="116" key="#com.intellij.ide.util.MemberChooser" timestamp="1588238518675">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="574" y="116" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1588238518675" />
-    <state x="498" y="196" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1587718618124">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="498" y="196" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" timestamp="1587718618124" />
-    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1587724202246">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1587724202246" />
-    <state x="366" y="9" width="551" height="765" key="#xdebugger.evaluate" timestamp="1588246338914">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="366" y="9" width="551" height="765" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" timestamp="1588246338914" />
-    <state x="382" y="0" key="CommitChangelistDialog2" timestamp="1587729324632">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="382" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1587729324632" />
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" timestamp="1587745671821">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" timestamp="1587745671821" />
-    <state x="492" y="154" key="FileChooserDialogImpl" timestamp="1587749692637">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="492" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587749692637" />
-    <state width="1493" height="189" key="GridCell.Tab.0.bottom" timestamp="1588248827679">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588248827679" />
-    <state width="1493" height="189" key="GridCell.Tab.0.center" timestamp="1588248827679">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1588248827679" />
-    <state width="1493" height="189" key="GridCell.Tab.0.left" timestamp="1588248827679">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1588248827679" />
-    <state width="1493" height="189" key="GridCell.Tab.0.right" timestamp="1588248827679">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="189" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1588248827679" />
-    <state width="1493" height="189" key="GridCell.Tab.1.bottom" timestamp="1588248827679">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="189" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588248827679" />
-    <state width="1493" height="189" key="GridCell.Tab.1.center" timestamp="1588248827679">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="189" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1588248827679" />
-    <state width="1493" height="189" key="GridCell.Tab.1.left" timestamp="1588248827679">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="189" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1588248827679" />
-    <state width="1493" height="189" key="GridCell.Tab.1.right" timestamp="1588248827679">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="189" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1588248827679" />
-    <state width="1493" height="239" key="GridCell.Tab.2.bottom" timestamp="1588246934791">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="239" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1588246934791" />
-    <state width="1493" height="239" key="GridCell.Tab.2.center" timestamp="1588246934791">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="239" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1588246934791" />
-    <state width="1493" height="239" key="GridCell.Tab.2.left" timestamp="1588246934791">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="239" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1588246934791" />
-    <state width="1493" height="239" key="GridCell.Tab.2.right" timestamp="1588246934791">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state width="1493" height="239" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1588246934791" />
-    <state x="299" y="67" key="Maven.ArtifactSearchDialog" timestamp="1587721879781">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1587721879781" />
-    <state x="473" y="119" key="MultipleFileMergeDialog" timestamp="1588248679429">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="473" y="119" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" timestamp="1588248679429" />
-    <state x="500" y="38" key="RollbackChangesDialog" timestamp="1588248662702">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="500" y="38" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1588248662702" />
-    <state x="472" y="20" width="1038" height="804" key="SettingsEditor" timestamp="1587718300007">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="472" y="20" width="1038" height="804" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1587718300007" />
-    <state x="515" y="35" key="VCS.ChangeListViewerDialog" timestamp="1588248654989">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="515" y="35" key="VCS.ChangeListViewerDialog/0.0.1536.824@0.0.1536.824" timestamp="1588248654989" />
-    <state x="361" y="141" key="Vcs.Push.Dialog.v2" timestamp="1587719655690">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1587719655690" />
-    <state x="526" y="301" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1587718299233">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="526" y="301" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" timestamp="1587718299233" />
-    <state x="452" y="128" width="761" height="638" key="find.popup" timestamp="1588243432361">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="452" y="128" width="761" height="638" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1588243432361" />
-    <state x="517" y="308" key="git4idea.ui.GitStashDialog" timestamp="1588248640831">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="517" y="308" key="git4idea.ui.GitStashDialog/0.0.1536.824@0.0.1536.824" timestamp="1588248640831" />
-    <state x="453" y="253" key="git4idea.ui.GitUnstashDialog" timestamp="1588248679571">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="453" y="253" key="git4idea.ui.GitUnstashDialog/0.0.1536.824@0.0.1536.824" timestamp="1588248679571" />
+    <state x="361" y="71" key="#Project_Structure" />
+    <state x="361" y="71" key="#Project_Structure/0.0.1536.824@0.0.1536.824" />
+    <state x="361" y="71" key="#SQL_Dialects" />
+    <state x="361" y="71" key="#SQL_Dialects/0.0.1536.824@0.0.1536.824" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="574" y="116" key="#com.intellij.ide.util.MemberChooser" />
+    <state x="574" y="116" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" />
+    <state x="498" y="196" key="#com.intellij.ide.util.TreeClassChooserDialog" />
+    <state x="498" y="196" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="366" y="9" width="551" height="765" key="#xdebugger.evaluate" />
+    <state x="366" y="9" width="551" height="765" key="#xdebugger.evaluate/0.0.1536.824@0.0.1536.824" />
+    <state x="382" y="0" key="CommitChangelistDialog2" />
+    <state x="382" y="0" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog" />
+    <state x="93" y="93" width="1350" height="638" key="DiffContextDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="492" y="154" key="FileChooserDialogImpl" />
+    <state x="492" y="154" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="189" key="GridCell.Tab.0.bottom" />
+    <state width="1493" height="189" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="189" key="GridCell.Tab.0.center" />
+    <state width="1493" height="189" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="189" key="GridCell.Tab.0.left" />
+    <state width="1493" height="189" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="189" key="GridCell.Tab.0.right" />
+    <state width="1493" height="189" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="189" key="GridCell.Tab.1.bottom" />
+    <state width="1493" height="189" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="189" key="GridCell.Tab.1.center" />
+    <state width="1493" height="189" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="189" key="GridCell.Tab.1.left" />
+    <state width="1493" height="189" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="189" key="GridCell.Tab.1.right" />
+    <state width="1493" height="189" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="239" key="GridCell.Tab.2.bottom" />
+    <state width="1493" height="239" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="239" key="GridCell.Tab.2.center" />
+    <state width="1493" height="239" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="239" key="GridCell.Tab.2.left" />
+    <state width="1493" height="239" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" />
+    <state width="1493" height="239" key="GridCell.Tab.2.right" />
+    <state width="1493" height="239" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" />
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog" />
+    <state x="299" y="67" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="473" y="119" key="MultipleFileMergeDialog" />
+    <state x="473" y="119" key="MultipleFileMergeDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="500" y="38" key="RollbackChangesDialog" />
+    <state x="500" y="38" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="472" y="20" width="1038" height="804" key="SettingsEditor" />
+    <state x="472" y="20" width="1038" height="804" key="SettingsEditor/0.0.1536.824@0.0.1536.824" />
+    <state x="515" y="35" key="VCS.ChangeListViewerDialog" />
+    <state x="515" y="35" key="VCS.ChangeListViewerDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2" />
+    <state x="361" y="141" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" />
+    <state x="526" y="301" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" />
+    <state x="526" y="301" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD/0.0.1536.824@0.0.1536.824" />
+    <state x="452" y="128" width="761" height="638" key="find.popup" />
+    <state x="452" y="128" width="761" height="638" key="find.popup/0.0.1536.824@0.0.1536.824" />
+    <state x="517" y="308" key="git4idea.ui.GitStashDialog" />
+    <state x="517" y="308" key="git4idea.ui.GitStashDialog/0.0.1536.824@0.0.1536.824" />
+    <state x="453" y="253" key="git4idea.ui.GitUnstashDialog" />
+    <state x="453" y="253" key="git4idea.ui.GitUnstashDialog/0.0.1536.824@0.0.1536.824" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/utils/TerminateDelivery.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="19" selection-start-line="6" selection-start-column="19" selection-end-line="6" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/controller/OrderController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" column="35" selection-start-line="18" selection-start-column="35" selection-end-line="18" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/utils/FoodPartyScheduler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/Loghme.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="49" column="84" selection-start-line="49" selection-start-column="84" selection-end-line="49" selection-end-column="84" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/utils/DeliveryManagment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/model/Order.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.pom">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/model/Food.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/loghme.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-679">
+          <caret line="38" column="107" selection-start-line="38" selection-start-column="107" selection-end-line="38" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/controller/CartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1411">
+          <caret line="83" column="37" selection-start-line="83" selection-start-column="37" selection-end-line="83" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/model/Mapper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="42" column="59" selection-start-line="42" selection-start-column="59" selection-end-line="42" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/model/FoodPartyRestaurant.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/util/Date.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="176" column="11" selection-start-line="176" selection-start-column="11" selection-end-line="176" selection-end-column="11" />
+          <folding>
+            <element signature="e#6390#6391#0" expanded="true" />
+            <element signature="e#6438#6439#0" expanded="true" />
+            <element signature="e#6844#6845#0" expanded="true" />
+            <element signature="e#6875#6876#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/jsonwebtoken/jjwt-api/0.11.1/jjwt-api-0.11.1.jar!/io/jsonwebtoken/JwtBuilder.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="51" column="31" selection-start-line="51" selection-start-column="31" selection-end-line="51" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/io/jsonwebtoken/jjwt-api/0.11.1/jjwt-api-0.11.1.jar!/io/jsonwebtoken/SignatureAlgorithm.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="10" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_131/src.zip!/java/lang/String.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="149">
+          <caret line="914" column="18" selection-start-line="914" selection-start-column="18" selection-end-line="914" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="112" column="17" selection-start-line="112" selection-start-column="17" selection-end-line="112" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/controller/UserController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="6" column="49" selection-start-line="6" selection-start-column="49" selection-end-line="6" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/JJWT/Encode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="49" column="41" lean-forward="true" selection-start-line="49" selection-start-column="28" selection-end-line="49" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/IE/JJWT/Validate.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <last-edited>Loghme:war</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.5" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Loghme</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.198" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: com.fasterxml.jackson.core:jackson-annotations:2.10.1</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.411" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
   </component>
 </project>
