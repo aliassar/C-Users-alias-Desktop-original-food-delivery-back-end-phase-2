@@ -6,18 +6,18 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <!--<filter>-->
-        <!--<filter-name>loggingFilter</filter-name>-->
-        <!--<filter-class>IE.filter.LoggingFilter</filter-class>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>loggingFilter</filter-name>-->
-        <!--<url-pattern>/user/*</url-pattern>-->
-        <!--<url-pattern>/cart/*</url-pattern>-->
-        <!--<url-pattern>/restaurants/*</url-pattern>-->
-        <!--<url-pattern>/order/*</url-pattern>-->
-        <!--<url-pattern>/foodparty/*</url-pattern>-->
-    <!--</filter-mapping>-->
+    <filter>
+        <filter-name>loggingFilter</filter-name>
+        <filter-class>IE.filter.LoggingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>loggingFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
+        <url-pattern>/cart/*</url-pattern>
+        <url-pattern>/restaurants/*</url-pattern>
+        <url-pattern>/order/*</url-pattern>
+        <url-pattern>/foodparty/*</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>dispatcher</servlet-name>
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
