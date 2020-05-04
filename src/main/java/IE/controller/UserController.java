@@ -13,6 +13,7 @@ public class UserController {
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/user",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public float GetWallet() {
+        System.out.println("hi");
         Loghme loghme = Loghme.getInstance();
         User user = loghme.getAppUser();
         return user.getWallet();
