@@ -15,7 +15,14 @@ public class Validate {
     private static String ISSUER = "loghme_back";
 
     public static User decodeJWT(String token) throws JWTVerificationException  {
+        if (token == null){
+
+            throw new  JWTVerificationException("token is empty");
+
+        }
+
         try{
+
             Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
 
             JWTVerifier verifier = JWT.require(algorithm)

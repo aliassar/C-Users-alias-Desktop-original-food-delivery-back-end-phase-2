@@ -32,9 +32,9 @@ public class LoggingFilter implements Filter {
         }
 
 
-        System.out.println("REST: " + httpRequest); // method + URI;
+        //System.out.println("REST: " + httpRequest); // method + URI;
 
-        chain.doFilter(request, response);
+        //chain.doFilter(request, response);
 
     }
 }
