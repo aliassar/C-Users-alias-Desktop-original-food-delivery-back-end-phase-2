@@ -80,17 +80,18 @@ public class FoodPartyMapper extends Mapper<FoodParty, Integer, String> {
 
     @Override
     protected FoodParty convertResultSetToObject(ResultSet rs) throws SQLException, MalformedURLException {
-        URL url = new URL(rs.getString(6));
+        URL url = new URL(rs.getString(7));
         return new FoodParty(
                 rs.getString(1),
                 rs.getString(2),
                 rs.getString(3),
-                rs.getFloat(4),
+                rs.getString(4),
                 rs.getFloat(5),
+                rs.getFloat(6),
                 url,
-                rs.getString(7),
-                rs.getFloat(8),
-                rs.getInt(9)
+                rs.getString(8),
+                rs.getFloat(9),
+                rs.getInt(10)
         );
     }
 

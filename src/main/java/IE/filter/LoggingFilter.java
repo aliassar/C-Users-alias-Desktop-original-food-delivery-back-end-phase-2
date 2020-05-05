@@ -18,7 +18,6 @@ public class LoggingFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        System.out.println("wwww");
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         String token =  request.getParameter("token");
