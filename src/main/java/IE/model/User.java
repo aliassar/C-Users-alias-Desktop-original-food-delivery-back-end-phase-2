@@ -1,6 +1,7 @@
 package IE.model;
 
 import IE.Exceptions.NoOrder;
+import sun.security.util.Password;
 
 import java.util.ArrayList;
 
@@ -11,8 +12,18 @@ public class User {
     private String lname;
     private String phoneNumber;
     private String email;
+    private String password;
     private float wallet;
     private Cart inProcessCart;
+
+    public User(String fname, String lname, String email, String password, float wallet, String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        this.password = password;
+        this.wallet = wallet;
+    }
 
     public User(String fname, String lname, String phoneNumber, String email, float wallet) {
         this.cartsOfUser = new ArrayList<>();

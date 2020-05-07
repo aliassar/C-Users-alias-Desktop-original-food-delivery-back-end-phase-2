@@ -12,6 +12,8 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.sql.SQLException;
 
 @WebFilter(filterName = "loggingFilter")
 public class LoggingFilter implements Filter {
@@ -26,7 +28,7 @@ public class LoggingFilter implements Filter {
             User user =Validate.decodeJWT(token);
             request.setAttribute("user", user);
             chain.doFilter(request,response);
-        }catch (JWTVerificationException error){
+        }catch (JWTVerificationException | SQLException | MalformedURLException error){
             ((HttpServletResponse) response).sendError(HttpServletResponse.SC_FORBIDDEN);
 
         }

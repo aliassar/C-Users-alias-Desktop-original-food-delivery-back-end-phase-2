@@ -27,7 +27,7 @@ public class Encode {
 
     private static String SECRET_KEY = "loghme";
 
-    public static String createJWT(String id, String subject, String userID) throws UnsupportedEncodingException {
+    public static String createJWT(String subject) {
 
         Algorithm algorithm = Algorithm.HMAC256(SECRET_KEY);
         long nowMillis = System.currentTimeMillis();
@@ -38,7 +38,7 @@ public class Encode {
                 .withIssuedAt(now)
                 .withExpiresAt(exp)
                 .withSubject(subject)
-                .withClaim("userID", userID)
+                //.withClaim("userID", userID)
                 .sign(algorithm);
         return token;
 

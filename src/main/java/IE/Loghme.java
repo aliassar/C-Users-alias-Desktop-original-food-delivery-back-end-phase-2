@@ -17,6 +17,11 @@ public class Loghme {
     private static Loghme instance;
     private RestaurantMapper restaurantMapper;
     private FoodPartyRestaurantMapper foodPartyRestaurantMapper;
+    private UserMapper userMapper;
+
+    public UserMapper getUserMapper() {
+        return userMapper;
+    }
 
     public User getAppUser() {
         return AppUser;
@@ -35,7 +40,7 @@ public class Loghme {
     }
 
     private Loghme() throws SQLException {
-        UserMapper userMapper = UserMapper.getInstance();
+        userMapper = UserMapper.getInstance();
         restaurantMapper = RestaurantMapper.getInstance();
         foodPartyRestaurantMapper = FoodPartyRestaurantMapper.getInstance();
         User user = new User("H", "M", "+0", "test@test.com", 2500000);
