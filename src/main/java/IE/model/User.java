@@ -1,7 +1,7 @@
 package IE.model;
 
 import IE.Exceptions.NoOrder;
-import sun.security.util.Password;
+import IE.password.Password;
 
 import java.util.ArrayList;
 
@@ -16,13 +16,23 @@ public class User {
     private float wallet;
     private Cart inProcessCart;
 
-    public User(String fname, String lname, String email, String password, float wallet, String phoneNumber) {
+    public User(String fname, String lname, String email, String password, float wallet, String phoneNumber) throws Exception {
         this.phoneNumber = phoneNumber;
         this.fname = fname;
         this.lname = lname;
         this.email = email;
-        this.password = password;
+        try {
+            this.password = Password.getSaltedHash(password);
+
+        }catch (Exception e){
+            throw e;
+        }
+
         this.wallet = wallet;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public User(String fname, String lname, String phoneNumber, String email, float wallet) {
