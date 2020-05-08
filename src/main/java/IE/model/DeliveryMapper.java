@@ -81,7 +81,7 @@ public class DeliveryMapper extends Mapper<Delivery, Integer, Integer> {
 
     @Override
     protected String getAllStatement() {
-        return "SELECT * FROM " + TABLE_NAME + ";";
+        return "SELECT "+ COLUMNS +" FROM "+ TABLE_NAME + ";";
     }
 
     @Override

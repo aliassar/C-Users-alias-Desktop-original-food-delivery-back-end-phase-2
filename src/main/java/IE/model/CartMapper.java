@@ -8,7 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CartMapper extends Mapper<Cart, Integer, Integer> {
+public class CartMapper extends Mapper<Cart, Integer, String> {
 
     private static CartMapper instance;
     public static final String COLUMNS = " userId, remainedTimeToArrive, Status, restaurantID ";
@@ -71,7 +71,7 @@ public class CartMapper extends Mapper<Cart, Integer, Integer> {
     protected Cart convertResultSetToObject(ResultSet rs) throws SQLException, MalformedURLException {
         OrderMapper orderMapper = OrderMapper.getInstance();
         return new Cart(orderMapper.filter(rs.getInt(1)),
-                rs.getInt(2),
+                rs.getString(2),
                 rs.getFloat(3),
                 rs.getString(4),
                 rs.getString(5)
@@ -82,10 +82,10 @@ public class CartMapper extends Mapper<Cart, Integer, Integer> {
         return "SELECT * FROM "+ TABLE_NAME + ";";
     }
     @Override
-    protected String getFilterStatement(Integer userId) {
+    protected String getFilterStatement(String userId) {
         return "SELECT " + COLUMNS +
                 " FROM " + TABLE_NAME +
-                " WHERE userId = " + userId.toString() + ";";
+                " WHERE userId = " + userId + ";";
     }
 
     @Override

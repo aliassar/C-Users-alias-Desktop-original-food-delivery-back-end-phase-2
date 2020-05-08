@@ -3,7 +3,7 @@ package IE.model;
 import java.util.ArrayList;
 
 public class Cart {
-    private Integer userId;
+    private String userId;
     private ArrayList<Order> orders;
     private float remainedTimeToArrive = 10000;
     private String Status;
@@ -14,7 +14,7 @@ public class Cart {
         this.orders = new ArrayList<>();
     }
 
-    public Cart(ArrayList<Order> orders,int userId,  float remainedTimeToArrive, String Status, String restaurantID) {
+    public Cart(ArrayList<Order> orders,String userId,  float remainedTimeToArrive, String Status, String restaurantID) {
         this.userId = userId;
         this.orders = orders;
         this.remainedTimeToArrive = remainedTimeToArrive;
@@ -59,11 +59,11 @@ public class Cart {
     }
 
 
-    public Integer getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Integer userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 }

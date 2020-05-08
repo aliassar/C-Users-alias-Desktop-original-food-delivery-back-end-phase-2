@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 
 public class User {
-    private ArrayList<Cart> cartsOfUser;
+    private ArrayList<Cart> cartsOfUser = new ArrayList<>();
     private String fname;
     private String lname;
     private String phoneNumber;

@@ -98,7 +98,7 @@ public class FoodPartyRestaurantMapper extends Mapper<FoodPartyRestaurant, Strin
 
     @Override
     protected String getAllStatement() {
-        return "SELECT * FROM " + TABLE_NAME + ";";
+        return"SELECT " + COLUMNS +" FROM " + TABLE_NAME + ";";
     }
     @Override
     protected String getFilterStatement(String name)  {

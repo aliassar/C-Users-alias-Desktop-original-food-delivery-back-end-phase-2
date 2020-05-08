@@ -28,11 +28,10 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
         st.executeUpdate(String.format(
                 "CREATE TABLE IF NOT EXISTS  %s " +
                         "(" +
-                        "id integer NOT NULL AUTO_INCREMENT PRIMARY KEY, " +
+                        "email varchar(100) NOT NULL PRIMARY KEY, " +
                         "fname varchar(100), " +
                         "lname varchar(100), " +
                         "phoneNumber varchar(100), " +
-                        "email varchar(100), " +
                         "wallet float " +
                         ");",
                 TABLE_NAME));
@@ -43,7 +42,7 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
     protected String getFindStatement(Integer id) {
         return "SELECT " + COLUMNS +
                 " FROM " + TABLE_NAME +
-                " WHERE id = " + id.toString() + ";";
+                " WHERE email = " + id.toString() + ";";
     }
 
     @Override
@@ -52,10 +51,10 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
         return "INSERT INTO " + TABLE_NAME +
                 "(" + COLUMNS + ")" + " VALUES " +
                 "(" +
+                '"' + user.getEmail() + '"' + ", " +
                 '"' + user.getFname() + '"' + ", " +
                 '"' + user.getLname() + '"' + ", " +
                 '"' + user.getPhoneNumber() + '"' + ", " +
-                '"' + user.getEmail() + '"' + ", " +
                 user.getWallet() +
                 ");";
     }
@@ -69,18 +68,18 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
     @Override
     protected User convertResultSetToObject(ResultSet rs) throws SQLException, MalformedURLException {
         CartMapper cartMapper = CartMapper.getInstance();
-        return new User(cartMapper.filter(rs.getInt(1)),
+        return new User(cartMapper.filter(rs.getString(1)),
                 rs.getString(2),
                 rs.getString(3),
                 rs.getString(4),
-                rs.getString(5),
-                rs.getFloat(6)
+                rs.getString(1),
+                rs.getFloat(5)
         );
     }
 
     @Override
     protected String getAllStatement() {
-        return "SELECT * FROM " + TABLE_NAME + ";";
+        return "SELECT "+ COLUMNS +" FROM " + TABLE_NAME + ";";
     }
 
     @Override
@@ -90,7 +89,7 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
 
     protected void getInsertCallBack(User user) throws SQLException {
         CartMapper cartMapper = CartMapper.getInstance();
-        int userId = getLastIdInt();
+        String userId = user.getEmail();
         for (int i = 0; i < user.getCartsOfUser().size(); i++) {
             Cart cart = user.getCartsOfUser().get(i);
             cart.setUserId(userId);

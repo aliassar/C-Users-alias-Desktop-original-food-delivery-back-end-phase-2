@@ -75,7 +75,7 @@ public class OrderMapper extends Mapper<Order, Integer, Integer> {
     }
     @Override
     protected String getAllStatement() {
-        return "SELECT * FROM " + TABLE_NAME + ";";
+        return"SELECT " + COLUMNS +" FROM "+ TABLE_NAME + ";";
     }
     @Override
     protected String getFilterStatement(Integer cartId) {
