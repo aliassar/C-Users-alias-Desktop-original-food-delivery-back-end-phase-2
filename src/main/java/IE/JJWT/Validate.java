@@ -36,7 +36,7 @@ public class Validate {
             DecodedJWT jwt = verifier.verify(token);
             String email = jwt.getSubject();
             UserMapper userMapper = loghme.getUserMapper();
-            User user = userMapper.find(0);
+            User user = userMapper.find(email);
 
             return user;
 

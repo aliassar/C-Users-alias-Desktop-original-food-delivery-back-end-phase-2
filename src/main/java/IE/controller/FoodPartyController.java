@@ -13,7 +13,8 @@ import java.util.ArrayList;
 public class FoodPartyController {
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/foodparty",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ArrayList<FoodPartyRestaurant> GetAllFoodPartyRestaurants() throws MalformedURLException, SQLException {
+    public ArrayList<FoodPartyRestaurant> GetAllFoodPartyRestaurants(@RequestAttribute(value = "user") User user)
+            throws MalformedURLException, SQLException {
         FoodPartyRestaurantMapper foodPartyRestaurantMapper = FoodPartyRestaurantMapper.getInstance();
         return foodPartyRestaurantMapper.getAll();
 

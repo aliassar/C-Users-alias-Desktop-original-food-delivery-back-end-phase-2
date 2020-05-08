@@ -21,9 +21,9 @@ import java.sql.SQLException;
 public class CartController {
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/cart",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Cart GetCart() {
+    public Cart GetCart(@RequestAttribute(value = "user") User user) {
         Loghme loghme = Loghme.getInstance();
-        User user = loghme.getAppUser();
+        //User user = loghme.getAppUser();
         Cart cart = user.getInProcessCart();
         if (cart.getOrders().size() > 0) {
             float estimatedArrive = 10000;
@@ -44,13 +44,14 @@ public class CartController {
         return cart;
     }
     @RequestMapping(value = "/cart",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> AddToCart(@RequestParam(value = "orders") ArrayList<Food> orders)
+    public ResponseEntity<?> AddToCart(@RequestAttribute(value = "orders") ArrayList<Food> orders,
+                                       @RequestAttribute(value = "user") User user)
     {
         Loghme loghme = Loghme.getInstance();
         boolean ErrorDetected = false;
         for (int i=0; i<orders.size(); i++){
             try {
-                loghme.addToCart(orders.get(i), orders.get(i).getRestaurantName());
+                loghme.addToCart(orders.get(i), orders.get(i).getRestaurantName(), user);
 
             }catch (NoRestaurant | WrongFood | DifRestaurants e) {
                 e.printStackTrace();
@@ -70,14 +71,15 @@ public class CartController {
     }
 
     @RequestMapping(value = "/cart/foodparty",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> AddToCartFoodParty(@RequestParam(value = "orders") ArrayList<FoodParty> orders)
+    public ResponseEntity<?> AddToCartFoodParty(@RequestAttribute(value = "orders") ArrayList<FoodParty> orders,
+                                                @RequestAttribute(value = "user") User user)
     {
         Loghme loghme = Loghme.getInstance();
         boolean ErrorDetected = false;
         for (int i=0; i<orders.size(); i++){
             try {
                 loghme.FoodPartyaddToCart(orders.get(i), orders.get(i).getRestaurantName());
-                loghme.addToCart(orders.get(i), orders.get(i).getRestaurantName());
+                loghme.addToCart(orders.get(i), orders.get(i).getRestaurantName(), user);
 
             }catch (NoRestaurant | WrongFood | DifRestaurants | NoFoodRemained e) {
                 e.printStackTrace();

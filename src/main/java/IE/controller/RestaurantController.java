@@ -5,6 +5,7 @@ import IE.Exceptions.NoRestaurant;
 import IE.Exceptions.OutOfBoundaryLocation;
 import IE.Loghme;
 import IE.model.Restaurant;
+import IE.model.User;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +19,14 @@ import java.util.ArrayList;
 public class RestaurantController {
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/restaurants",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ArrayList<Restaurant> GetAllRestaurants() throws MalformedURLException, SQLException {
+    public ArrayList<Restaurant> GetAllRestaurants(@RequestAttribute(value = "user") User user) throws MalformedURLException, SQLException {
         Loghme loghme = Loghme.getInstance();
         return loghme.getNearbyRestaurants();
     }
 
     @RequestMapping(value = "/restaurants/{restaurantId}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> GetRestaurant(@PathVariable(value = "restaurantId") String restaurantId){
+    public ResponseEntity<?> GetRestaurant(@PathVariable(value = "restaurantId") String restaurantId,
+                                           @RequestAttribute(value = "user") User user){
         Loghme loghme = Loghme.getInstance();
         try {
             Restaurant restaurant = loghme.getRestaurantInfo(restaurantId);

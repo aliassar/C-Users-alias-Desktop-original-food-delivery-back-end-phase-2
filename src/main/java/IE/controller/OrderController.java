@@ -17,9 +17,9 @@ import java.sql.SQLException;
 public class OrderController {
     @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/order",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> GetAllOrders() {
-        Loghme loghme = Loghme.getInstance();
-        User user = loghme.getAppUser();
+    public ResponseEntity<?> GetAllOrders(@RequestAttribute(value = "user") User user) {
+        //Loghme loghme = Loghme.getInstance();
+        //User user = loghme.getAppUser();
         try {
             Cart cart = user.getLastCart();
             return ResponseEntity.status(HttpStatus.OK).body(cart);
@@ -30,19 +30,20 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/order/{OrderId}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Cart GetOrder(@PathVariable(value = "OrderId") int OrderId){
-        Loghme loghme = Loghme.getInstance();
-        User user = loghme.getAppUser();
+    public Cart GetOrder(@PathVariable(value = "OrderId") int OrderId,
+                         @RequestAttribute(value = "user") User user){
+        //Loghme loghme = Loghme.getInstance();
+        //User user = loghme.getAppUser();
         return user.getCartsOfUser().get(OrderId);
 
     }
 
     @RequestMapping(value = "/order",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> FinalizeOrders(){
+    public ResponseEntity<?> FinalizeOrders(@RequestAttribute(value = "user") User user){
         Loghme loghme = Loghme.getInstance();
         try {
-            loghme.finalizeOrder();
-            User user = loghme.getAppUser();
+            loghme.finalizeOrder(user);
+            //User user = loghme.getAppUser();
             Cart cart = user.getLastCart();
             return ResponseEntity.status(HttpStatus.OK).body(cart);
         } catch (InsufficientMoney | NoOrder | EmptyCart | IOException | SQLException e ) {

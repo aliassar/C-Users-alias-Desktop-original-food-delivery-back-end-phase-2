@@ -22,7 +22,7 @@ public class LoggingFilter implements Filter {
             throws IOException, ServletException {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
-        String token =  request.getParameter("token");
+        String token =  ((HttpServletRequest) request).getHeader("token");
 
         try {
             User user =Validate.decodeJWT(token);

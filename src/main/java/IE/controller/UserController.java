@@ -6,6 +6,7 @@ import IE.model.Cart;
 import IE.model.User;
 import IE.model.UserMapper;
 import IE.password.Password;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -34,7 +35,7 @@ public class UserController {
         Loghme loghme = Loghme.getInstance();
         UserMapper userMapper = loghme.getUserMapper();
         try {
-            User user = userMapper.find(0);
+            User user = userMapper.find(email);
             try {
                 boolean correctPass = Password.check(password,user.getPassword());
                 if (!correctPass){
@@ -53,10 +54,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/register",method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> RegisterUser(@RequestParam(value = "email") String email,
-                                          @RequestParam(value = "password") String password,
-                                          @RequestParam(value = "firstName") String firstName,
-                                          @RequestParam(value = "lastName") String lastName) throws SQLException, MalformedURLException {
+    public ResponseEntity<?> RegisterUser(@RequestAttribute( value = "email") String email,
+                                          @RequestAttribute(value = "password") String password,
+                                          @RequestAttribute(value = "firstName") String firstName,
+                                          @RequestAttribute(value = "lastName") String lastName) throws SQLException, MalformedURLException {
         //System.out.println("hi");
         Loghme loghme = Loghme.getInstance();
         UserMapper userMapper = loghme.getUserMapper();
@@ -84,9 +85,9 @@ public class UserController {
 
 
     @RequestMapping(value = "/user/cart",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ArrayList<Cart> GetCartsOfUser() {
-        Loghme loghme = Loghme.getInstance();
-        User user = loghme.getAppUser();
+    public ArrayList<Cart> GetCartsOfUser(@RequestAttribute(value = "user") User user) {
+        //Loghme loghme = Loghme.getInstance();
+        //User user = loghme.getAppUser();
         return user.getCartsOfUser();
 
     }
@@ -95,10 +96,12 @@ public class UserController {
 
 
     @RequestMapping(value = "/user",method = RequestMethod.POST)
-    public void AddToWallet(@RequestParam(value = "credit") float amount){
+    public void AddToWallet(@RequestParam(value = "credit") float amount,
+                            @RequestAttribute(value = "user") User user){
+        user.AddToWallet(amount);
 
-        Loghme loghme = Loghme.getInstance();
-        loghme.increaseWallet(amount);
+//        Loghme loghme = Loghme.getInstance();
+//        loghme.increaseWallet(amount);
 
 
     }

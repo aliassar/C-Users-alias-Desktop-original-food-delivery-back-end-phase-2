@@ -161,7 +161,7 @@ public class Loghme {
 
     }
 
-    public void addToCart(Food food, String restaurantID) throws NoRestaurant, WrongFood, DifRestaurants, MalformedURLException, SQLException {
+    public void addToCart(Food food, String restaurantID, User user) throws NoRestaurant, WrongFood, DifRestaurants, MalformedURLException, SQLException {
 
         ArrayList<Restaurant> AllRestaurants = this.restaurantMapper.getAll();
 
@@ -190,7 +190,7 @@ public class Loghme {
             throw new WrongFood("no food with this name in this restaurant");
         }
 
-        Cart inProcessCart = this.AppUser.getInProcessCart();
+        Cart inProcessCart = user.getInProcessCart();
         if (inProcessCart.getOrders().size() == 0) {
             inProcessCart.setRestaurantID(restaurantID);
         }
@@ -241,8 +241,8 @@ public class Loghme {
     }
 
 
-    public void finalizeOrder() throws IOException, InsufficientMoney, EmptyCart, SQLException {
-        Cart inProcessCart = this.AppUser.getInProcessCart();
+    public void finalizeOrder(User user) throws IOException, InsufficientMoney, EmptyCart, SQLException {
+        Cart inProcessCart = user.getInProcessCart();
         if (inProcessCart.getOrders().size() < 1) {
             throw new EmptyCart("Your cart is empty. Fill it with some food");
         }
@@ -251,26 +251,26 @@ public class Loghme {
         for (Order order : inProcessCart.getOrders()) {
             totalPrice += (order.getCost() * order.getNumOfOrder());
         }
-        if (this.AppUser.getWallet() < totalPrice) {
+        if (user.getWallet() < totalPrice) {
             throw new InsufficientMoney("Insufficient money");
         }
         inProcessCart.setStatus("finding delivery");
         mapper.insert(inProcessCart);
         System.out.println("Order recorded successfully");
-        this.AppUser.setWallet(this.AppUser.getWallet() - totalPrice);
-        this.AppUser.newProcessedCart(inProcessCart);
+        user.setWallet(user.getWallet() - totalPrice);
+        user.newProcessedCart(inProcessCart);
         Restaurant chosenRestaurant;
         FoodPartyRestaurant chosenFoodPartyRestaurants;
         System.out.println(inProcessCart.getRestaurantID());
 
         try {
             chosenRestaurant = FindRestaurant(inProcessCart.getRestaurantID());
-            this.AssignDeliveryToUser(this.AppUser.getCartsOfUser(), this.AppUser.getCartsOfUser().size() - 1,
+            this.AssignDeliveryToUser(user.getCartsOfUser(), user.getCartsOfUser().size() - 1,
                     chosenRestaurant.getLocation());
         } catch (NoRestaurant e) {
             try {
                 chosenFoodPartyRestaurants = FindFoodPartyRestaurant(inProcessCart.getRestaurantID());
-                this.AssignDeliveryToUser(this.AppUser.getCartsOfUser(), this.AppUser.getCartsOfUser().size() - 1,
+                this.AssignDeliveryToUser(user.getCartsOfUser(), user.getCartsOfUser().size() - 1,
                         chosenFoodPartyRestaurants.getLocation());
             } catch (NoRestaurant error) {
                 error.printStackTrace();
@@ -278,7 +278,7 @@ public class Loghme {
         }
 
 
-        this.AppUser.clearInProcessCart();
+        user.clearInProcessCart();
 
     }
 
