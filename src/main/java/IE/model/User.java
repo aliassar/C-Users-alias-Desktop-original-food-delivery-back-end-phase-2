@@ -45,16 +45,14 @@ public class User {
         this.wallet = wallet;
     }
 
-    public User() {
-    }
-
-    public User(ArrayList<Cart> cartsOfUser, String fname, String lname, String phoneNumber, String email, float wallet) {
+    public User(ArrayList<Cart> cartsOfUser, String fname, String lname, String phoneNumber, String email, float wallet, String password) {
         this.cartsOfUser = cartsOfUser;
         this.fname = fname;
         this.lname = lname;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.wallet = wallet;
+        this.password = password;
     }
 
     public void AddToWallet(float amount) {

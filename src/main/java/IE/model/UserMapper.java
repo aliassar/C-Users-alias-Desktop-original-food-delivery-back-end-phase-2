@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class UserMapper extends Mapper<User, Integer, Integer> {
     private static UserMapper instance;
-    public static final String COLUMNS = " fname, lname, phoneNumber, email, wallet ";
+    public static final String COLUMNS = " email, fname, lname, phoneNumber, wallet, password ";
     public static final String TABLE_NAME = "users";
 
     public static UserMapper getInstance() {
@@ -32,7 +32,8 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
                         "fname varchar(100), " +
                         "lname varchar(100), " +
                         "phoneNumber varchar(100), " +
-                        "wallet float " +
+                        "wallet float, " +
+                        "password varchar(500) " +
                         ");",
                 TABLE_NAME));
         con.close();
@@ -55,7 +56,8 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
                 '"' + user.getFname() + '"' + ", " +
                 '"' + user.getLname() + '"' + ", " +
                 '"' + user.getPhoneNumber() + '"' + ", " +
-                user.getWallet() +
+                user.getWallet() + ", "+
+                '"' + user.getPassword() + '"'+
                 ");";
     }
 
@@ -73,7 +75,8 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
                 rs.getString(3),
                 rs.getString(4),
                 rs.getString(1),
-                rs.getFloat(5)
+                rs.getFloat(5),
+                rs.getString(6)
         );
     }
 
