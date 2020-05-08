@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class UserMapper extends Mapper<User, Integer, Integer> {
+public class UserMapper extends Mapper<User, String, Integer> {
     private static UserMapper instance;
     public static final String COLUMNS = " email, fname, lname, phoneNumber, wallet, password ";
     public static final String TABLE_NAME = "users";
@@ -40,14 +40,14 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
     }
 
     @Override
-    protected String getFindStatement(Integer id) {
+    protected String getFindStatement(String id) {
         return "SELECT " + COLUMNS +
                 " FROM " + TABLE_NAME +
-                " WHERE email = " + id.toString() + ";";
+                " WHERE email = " + id + ";";
     }
 
     @Override
-    protected String getInsertStatement(User user) throws SQLException {
+    protected String getInsertStatement(User user) {
 
         return "INSERT INTO " + TABLE_NAME +
                 "(" + COLUMNS + ")" + " VALUES " +
@@ -62,9 +62,9 @@ public class UserMapper extends Mapper<User, Integer, Integer> {
     }
 
     @Override
-    protected String getDeleteStatement(Integer id) {
+    protected String getDeleteStatement(String id) {
         return "DELETE FROM " + TABLE_NAME +
-                " WHERE id = " + id.toString() + ";";
+                " WHERE email = " + id + ";";
     }
 
     @Override
