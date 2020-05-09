@@ -5,6 +5,7 @@ import com.google.api.client.googleapis.auth.oauth2.GoogleIdToken.Payload;
 import com.google.api.client.googleapis.auth.oauth2.GoogleIdTokenVerifier;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.security.GeneralSecurityException;
 import java.util.Collections;
 
@@ -27,21 +28,23 @@ import org.springframework.web.bind.annotation.*;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Random;
 
 @CrossOrigin(origins = "http://localhost:3000, http://67835aa1.ngrok.io")
 @RestController
 public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public User GetUser(@RequestAttribute(value = "user") User user) {
+    public String GetUser(@RequestAttribute(value = "user") User user) {
 
-//        JSONObject json = new JSONObject();
-//        json.put("fname",user.getFname());
-//        json.put("lname",user.getLname());
-//        json.put("email",user.getEmail());
-//        json.put("phoneNumber",user.getPhoneNumber());
-//        json.put("credit",user.getWallet());
 
-        return user;
+        JSONObject json = new JSONObject();
+        json.put("fname",user.getFname());
+        json.put("lname",user.getLname());
+        json.put("email",user.getEmail());
+        json.put("phoneNumber",user.getPhoneNumber());
+        json.put("credit",user.getWallet());
+
+        return json.toString();
 
     }
     @RequestMapping(value = "/googleAuth", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -76,11 +79,11 @@ public class UserController {
                 // Get profile information from payload
                 String email = payload.getEmail();
                 //boolean emailVerified = Boolean.valueOf(payload.getEmailVerified());
-                String name = (String) payload.get("name");
-                String pictureUrl = (String) payload.get("picture");
-                String locale = (String) payload.get("locale");
-                String familyName = (String) payload.get("family_name");
-                String givenName = (String) payload.get("given_name");
+//                String name = (String) payload.get("name");
+//                String pictureUrl = (String) payload.get("picture");
+//                String locale = (String) payload.get("locale");
+//                String familyName = (String) payload.get("family_name");
+//                String givenName = (String) payload.get("given_name");
 
                 UserMapper userMapper = loghme.getUserMapper();
                 try {
@@ -136,19 +139,25 @@ public class UserController {
     }
     @RequestMapping(value = "/register", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> RegisterUser(@RequestBody User user) throws Exception {
+    public ResponseEntity<?> RegisterUser(@RequestBody String body) throws SQLException, MalformedURLException {
         Loghme loghme = Loghme.getInstance();
         UserMapper userMapper = loghme.getUserMapper();
         ArrayList<User> users = userMapper.getAll();
-        user.setPassword(Password.getSaltedHash(user.getPassword()));
+        JSONObject jsonObject = new JSONObject(body);
+        String email = jsonObject.getString("email");
+        String password = jsonObject.getString("password");
+        String firstName = jsonObject.getString("firstName");
+        String lastName = jsonObject.getString("lastName");
+        //user.setPassword(Password.getSaltedHash(user.getPassword()));
         for (User value : users) {
-            if (user.getEmail().equals(value.getEmail())) {
+            if (email.equals(value.getEmail())) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("email has been taken");
             }
         }
+        User user;
         try {
-            user.setWallet(0);
-            user.setPhoneNumber("0");
+             user = new User(firstName,lastName,email,password);
+
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("problem with password");

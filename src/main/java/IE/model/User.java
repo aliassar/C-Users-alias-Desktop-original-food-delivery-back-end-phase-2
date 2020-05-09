@@ -20,21 +20,31 @@ public class User {
     }
 
     public User(String fname, String lname, String email, String password) throws Exception {
+        this.phoneNumber = "0";
+        this.fname = fname;
+        this.lname = lname;
+        this.email = email;
+        try {
+            this.password = Password.getSaltedHash(password);
+
+        }catch (Exception e){
+            throw e;
+        }
+
+        this.wallet = 0;
+    }
+
+    public User(String fname, String lname, String phoneNumber, String email, float wallet) {
         this.cartsOfUser = new ArrayList<>();
         inProcessCart = new Cart();
         this.fname = fname;
         this.lname = lname;
-        this.phoneNumber = "0";
+        this.phoneNumber = phoneNumber;
         this.email = email;
-        this.wallet = 0;
-        try {
-            this.password = Password.getSaltedHash(password);
-
-        } catch (Exception e) {
-            throw e;
-        }
-
+        this.wallet = wallet;
     }
+
+
 
     public User(ArrayList<Cart> cartsOfUser, String fname, String lname, String phoneNumber, String email, float wallet, String password) {
         this.cartsOfUser = cartsOfUser;
