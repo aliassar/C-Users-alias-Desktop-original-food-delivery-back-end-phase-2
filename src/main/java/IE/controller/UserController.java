@@ -17,6 +17,7 @@ import IE.password.Password;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.apache.ApacheHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.gson.JsonObject;
 import kong.unirest.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -31,10 +32,16 @@ import java.util.ArrayList;
 @RestController
 public class UserController {
     @RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public float GetWallet() {
+    public String GetUser() {
         Loghme loghme = Loghme.getInstance();
         User user = loghme.getAppUser();
-        return user.getWallet();
+        JSONObject json = new JSONObject();
+        json.put("fname",user.getFname());
+        json.put("lname",user.getLname());
+        json.put("email",user.getEmail());
+        json.put("phoneNumber",user.getPhoneNumber());
+        json.put("credit",user.getWallet());
+        return json.toString();
 
     }
     @RequestMapping(value = "/googleAuth", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
