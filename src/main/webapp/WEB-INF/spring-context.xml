@@ -18,5 +18,14 @@
         up static resources in the ${webappRoot}/resources directory -->
 
     <context:component-scan base-package="IE.controller" />
+    <annotation-driven />
+    <cors>
+        <mapping path="/info/**"
+                     allowed-origins="http://localhost:3000"
+                     allowed-methods="POST, GET, PUT, OPTIONS, DELETE"
+                     allowed-headers="token, Content-Type"
+                     allow-credentials="false"
+                     max-age="4800" />
+    </cors>
 
 </beans:beans>

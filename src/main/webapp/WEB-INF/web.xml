@@ -26,6 +26,14 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
     <filter>
+        <filter-name>CORS</filter-name>
+        <filter-class>IE.filter.CORSFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>CORS</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <filter>
         <filter-name>loggingFilter</filter-name>
         <filter-class>IE.filter.LoggingFilter</filter-class>
     </filter>
@@ -37,4 +45,5 @@
         <url-pattern>/order/*</url-pattern>
         <url-pattern>/foodparty/*</url-pattern>
     </filter-mapping>
+
 </web-app>

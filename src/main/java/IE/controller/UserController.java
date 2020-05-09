@@ -27,9 +27,9 @@ import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+@CrossOrigin(origins = "http://localhost:3000, http://67835aa1.ngrok.io")
 @RestController
 public class UserController {
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public float GetWallet() {
         Loghme loghme = Loghme.getInstance();
@@ -37,7 +37,6 @@ public class UserController {
         return user.getWallet();
 
     }
-
     @RequestMapping(value = "/googleAuth", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> GetGoogleToken(@RequestBody String body) {
         //System.out.println("hi");
@@ -50,7 +49,7 @@ public class UserController {
 
         GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jacksonFactory)
                 // Specify the CLIENT_ID of the app that accesses the backend:
-                .setAudience(Collections.singletonList("ID"))
+                .setAudience(Collections.singletonList("347630814057-37803da2d84beq46tu5kifr4cc3cpplc.apps.googleusercontent.com"))
                 // Or, if multiple clients access the backend:
                 //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
                 .build();
@@ -98,7 +97,6 @@ public class UserController {
 
     }
 
-
     @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> LoginUser(@RequestBody String body) {
         try {
@@ -129,18 +127,13 @@ public class UserController {
         }
 
     }
-
     @RequestMapping(value = "/register", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> RegisterUser(@RequestBody User user
     ) throws Exception {
         Loghme loghme = Loghme.getInstance();
         UserMapper userMapper = loghme.getUserMapper();
         ArrayList<User> users = userMapper.getAll();
-        try {
-            user.setPassword(Password.getSaltedHash(user.getPassword()));
-        } catch (Exception e) {
-            throw e;
-        }
+        user.setPassword(Password.getSaltedHash(user.getPassword()));
         for (User value : users) {
             if (user.getEmail().equals(value.getEmail())) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("email has been taken");
@@ -161,7 +154,6 @@ public class UserController {
 
     }
 
-
     @RequestMapping(value = "/user/cart", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Cart> GetCartsOfUser(@RequestAttribute(value = "user") User user) {
         //Loghme loghme = Loghme.getInstance();
@@ -169,7 +161,6 @@ public class UserController {
         return user.getCartsOfUser();
 
     }
-
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public void AddToWallet(@RequestParam(value = "credit") float amount,

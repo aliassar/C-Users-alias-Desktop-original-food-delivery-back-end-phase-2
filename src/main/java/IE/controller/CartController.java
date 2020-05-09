@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class CartController {
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/cart",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Cart GetCart(@RequestAttribute(value = "user") User user) {
         Loghme loghme = Loghme.getInstance();
@@ -49,14 +49,14 @@ public class CartController {
     {
         Loghme loghme = Loghme.getInstance();
         boolean ErrorDetected = false;
-        for (int i=0; i<orders.size(); i++){
+        for (Food order : orders) {
             try {
-                loghme.addToCart(orders.get(i), orders.get(i).getRestaurantName(), user);
+                loghme.addToCart(order, order.getRestaurantName(), user);
 
-            }catch (NoRestaurant | WrongFood | DifRestaurants e) {
+            } catch (NoRestaurant | WrongFood | DifRestaurants e) {
                 e.printStackTrace();
                 ErrorDetected = true;
-            }catch (SQLException | MalformedURLException e) {
+            } catch (SQLException | MalformedURLException e) {
                 e.printStackTrace();
             }
         }
@@ -69,22 +69,21 @@ public class CartController {
         }
 
     }
-
     @RequestMapping(value = "/cart/foodparty",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> AddToCartFoodParty(@RequestAttribute(value = "orders") ArrayList<FoodParty> orders,
                                                 @RequestAttribute(value = "user") User user)
     {
         Loghme loghme = Loghme.getInstance();
         boolean ErrorDetected = false;
-        for (int i=0; i<orders.size(); i++){
+        for (FoodParty order : orders) {
             try {
-                loghme.FoodPartyaddToCart(orders.get(i), orders.get(i).getRestaurantName());
-                loghme.addToCart(orders.get(i), orders.get(i).getRestaurantName(), user);
+                loghme.FoodPartyaddToCart(order, order.getRestaurantName());
+                loghme.addToCart(order, order.getRestaurantName(), user);
 
-            }catch (NoRestaurant | WrongFood | DifRestaurants | NoFoodRemained e) {
+            } catch (NoRestaurant | WrongFood | DifRestaurants | NoFoodRemained e) {
                 e.printStackTrace();
                 ErrorDetected = true;
-            }catch (SQLException | MalformedURLException e) {
+            } catch (SQLException | MalformedURLException e) {
                 e.printStackTrace();
             }
         }

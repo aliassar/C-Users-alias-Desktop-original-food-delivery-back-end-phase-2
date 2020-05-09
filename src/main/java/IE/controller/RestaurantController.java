@@ -15,15 +15,14 @@ import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class RestaurantController {
-    @CrossOrigin(origins = "http://localhost:3000")
     @RequestMapping(value = "/restaurants",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Restaurant> GetAllRestaurants(@RequestAttribute(value = "user") User user) throws MalformedURLException, SQLException {
         Loghme loghme = Loghme.getInstance();
         return loghme.getNearbyRestaurants();
     }
-
     @RequestMapping(value = "/restaurants/{restaurantId}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> GetRestaurant(@PathVariable(value = "restaurantId") String restaurantId,
                                            @RequestAttribute(value = "user") User user){

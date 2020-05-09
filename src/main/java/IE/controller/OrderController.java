@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import java.io.IOException;
 import java.sql.SQLException;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class OrderController {
     @CrossOrigin(origins = "http://localhost:3000")
@@ -28,7 +29,6 @@ public class OrderController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(noOrder.getMessage());
         }
     }
-
     @RequestMapping(value = "/order/{OrderId}",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public Cart GetOrder(@PathVariable(value = "OrderId") int OrderId,
                          @RequestAttribute(value = "user") User user){
@@ -37,7 +37,6 @@ public class OrderController {
         return user.getCartsOfUser().get(OrderId);
 
     }
-
     @RequestMapping(value = "/order",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> FinalizeOrders(@RequestAttribute(value = "user") User user){
         Loghme loghme = Loghme.getInstance();
