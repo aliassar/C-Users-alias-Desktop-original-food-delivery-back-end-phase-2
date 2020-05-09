@@ -220,8 +220,8 @@ public class Loghme {
 
     }
 
-    public Cart getCart() {
-        return this.AppUser.getInProcessCart();
+    public Cart getCart(User user) {
+        return user.getInProcessCart();
     }
 
     public Restaurant FindRestaurant(String ID) throws NoRestaurant, MalformedURLException {
