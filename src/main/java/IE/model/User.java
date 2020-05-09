@@ -10,39 +10,30 @@ public class User {
     private ArrayList<Cart> cartsOfUser = new ArrayList<>();
     private String fname;
     private String lname;
-    private String phoneNumber;
+    private String phoneNumber = "0";
     private String email;
     private String password;
-    private float wallet;
-    private Cart inProcessCart;
+    private float wallet = 0;
+    private Cart inProcessCart = new Cart();
 
-    public User(String fname, String lname, String email, String password, float wallet, String phoneNumber) throws Exception {
-        this.phoneNumber = phoneNumber;
-        this.fname = fname;
-        this.lname = lname;
-        this.email = email;
-        try {
-            this.password = Password.getSaltedHash(password);
-
-        }catch (Exception e){
-            throw e;
-        }
-
-        this.wallet = wallet;
+    public User() {
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public User(String fname, String lname, String phoneNumber, String email, float wallet) {
+    public User(String fname, String lname, String email, String password) throws Exception {
         this.cartsOfUser = new ArrayList<>();
         inProcessCart = new Cart();
         this.fname = fname;
         this.lname = lname;
-        this.phoneNumber = phoneNumber;
+        this.phoneNumber = "0";
         this.email = email;
-        this.wallet = wallet;
+        this.wallet = 0;
+        try {
+            this.password = Password.getSaltedHash(password);
+
+        } catch (Exception e) {
+            throw e;
+        }
+
     }
 
     public User(ArrayList<Cart> cartsOfUser, String fname, String lname, String phoneNumber, String email, float wallet, String password) {
@@ -103,6 +94,7 @@ public class User {
     public Cart getInProcessCart() {
         return inProcessCart;
     }
+
     public Cart getLastCart() throws NoOrder {
         if (cartsOfUser.size() < 1) {
             throw new NoOrder("There are no processed order");
@@ -110,14 +102,24 @@ public class User {
             return cartsOfUser.get(cartsOfUser.size() - 1);
         }
     }
+
     public void clearInProcessCart() {
         inProcessCart = new Cart();
     }
+
     public ArrayList<Cart> getCartsOfUser() {
         return cartsOfUser;
     }
+
     public void newProcessedCart(Cart cart) {
         cartsOfUser.add(cart);
+    }
+
+    public String getPassword() {
+        return password;
+    }
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
 

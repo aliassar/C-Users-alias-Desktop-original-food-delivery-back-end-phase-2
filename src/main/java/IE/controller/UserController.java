@@ -17,7 +17,7 @@ import IE.password.Password;
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.apache.ApacheHttpTransport;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import org.hibernate.validator.constraints.SafeHtml;
+import kong.unirest.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,45 +26,42 @@ import org.springframework.web.bind.annotation.*;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 @RestController
 public class UserController {
     @CrossOrigin(origins = "http://localhost:3000")
-    @RequestMapping(value = "/user",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/user", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public float GetWallet() {
-        //System.out.println("hi");
         Loghme loghme = Loghme.getInstance();
         User user = loghme.getAppUser();
         return user.getWallet();
 
     }
 
-    @RequestMapping(value = "/googleAuth",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> GetWallet(@RequestAttribute( value = "googleIdToken") GoogleIdToken token) {
+    @RequestMapping(value = "/googleAuth", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> GetGoogleToken(@RequestBody String body) {
         //System.out.println("hi");
         Loghme loghme = Loghme.getInstance();
+        JSONObject jsonObject = new JSONObject(body);
+
+        String token = jsonObject.getString("token");
         JacksonFactory jacksonFactory = new JacksonFactory();
         HttpTransport transport = new ApacheHttpTransport();
 
-
-
-        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport,jacksonFactory)
+        GoogleIdTokenVerifier verifier = new GoogleIdTokenVerifier.Builder(transport, jacksonFactory)
                 // Specify the CLIENT_ID of the app that accesses the backend:
                 .setAudience(Collections.singletonList("ID"))
                 // Or, if multiple clients access the backend:
                 //.setAudience(Arrays.asList(CLIENT_ID_1, CLIENT_ID_2, CLIENT_ID_3))
                 .build();
-
 // (Receive idTokenString by HTTPS POST)
 
         try {
 
-            GoogleIdToken idToken = null;
-             boolean flag = verifier.verify(token);
+            GoogleIdToken idToken = verifier.verify(token);
 
-            if (flag) {
-                Payload payload = token.getPayload();
+            if (idToken != null) {
+                Payload payload = idToken.getPayload();
 
                 // Print user identifier
                 String userId = payload.getSubject();
@@ -85,84 +82,87 @@ public class UserController {
                     String JWTtoken = Encode.createJWT(user.getEmail());
                     return ResponseEntity.status(HttpStatus.OK).body(JWTtoken);
 
-                }catch (SQLException e){
+                } catch (SQLException e) {
                     return ResponseEntity.status(HttpStatus.FORBIDDEN).body("no user with that email");
                 }
 
 
-
-
-
             } else {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("bad token");
-            }}catch (GeneralSecurityException | IOException e){
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
-
             }
+        } catch (GeneralSecurityException | IOException e) {
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body(e.getMessage());
 
+        }
 
 
     }
 
 
-
-    @RequestMapping(value = "/login",method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> LoginUser(@RequestParam(value = "email") String email,
-                           @RequestParam(value = "password") String password) {
-        //System.out.println("hi");
-        Loghme loghme = Loghme.getInstance();
-        UserMapper userMapper = loghme.getUserMapper();
+    @RequestMapping(value = "/login", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> LoginUser(@RequestBody String body) {
         try {
-            User user = userMapper.find(email);
+            JSONObject jsonObject = new JSONObject(body);
+            String email = jsonObject.getString("email");
+            String password = jsonObject.getString("password");
+            Loghme loghme = Loghme.getInstance();
+            UserMapper userMapper = loghme.getUserMapper();
             try {
-                boolean correctPass = Password.check(password,user.getPassword());
-                if (!correctPass){
+                User user = userMapper.find(email);
+                try {
+                    boolean correctPass = Password.check(password, user.getPassword());
+                    if (!correctPass) {
+                        return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Wrong Password");
+                    }
+                } catch (Exception e) {
                     return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Wrong Password");
                 }
-            }catch (Exception e){
-                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Wrong Password");
-            }
 
-            String token = Encode.createJWT(user.getEmail());
-            return ResponseEntity.status(HttpStatus.OK).body(token);
-        }catch (SQLException | MalformedURLException e){
-            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("user not found");
+                String token = Encode.createJWT(user.getEmail());
+                return ResponseEntity.status(HttpStatus.OK).body(token);
+            } catch (SQLException | MalformedURLException e) {
+                return ResponseEntity.status(HttpStatus.FORBIDDEN).body("user not found");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.FORBIDDEN).body("no email or password entered");
         }
 
     }
 
-    @RequestMapping(value = "/register",method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> RegisterUser(@RequestAttribute( value = "email") String email,
-                                          @RequestAttribute(value = "password") String password,
-                                          @RequestAttribute(value = "firstName") String firstName,
-                                          @RequestAttribute(value = "lastName") String lastName) throws SQLException, MalformedURLException {
-        //System.out.println("hi");
+    @RequestMapping(value = "/register", method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> RegisterUser(@RequestBody User user
+    ) throws Exception {
         Loghme loghme = Loghme.getInstance();
         UserMapper userMapper = loghme.getUserMapper();
         ArrayList<User> users = userMapper.getAll();
-        for (int i = 0; i<users.size(); i++){
-            if (email.equals(users.get(i).getEmail())){
+        try {
+            user.setPassword(Password.getSaltedHash(user.getPassword()));
+        } catch (Exception e) {
+            throw e;
+        }
+        for (User value : users) {
+            if (user.getEmail().equals(value.getEmail())) {
                 return ResponseEntity.status(HttpStatus.FORBIDDEN).body("email has been taken");
             }
         }
-        User user;
         try {
-            user = new User(firstName,lastName,email,password,0,"0");
+            user.setWallet(0);
+            user.setPhoneNumber("0");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body("problem with password");
         }
 
         userMapper.insert(user);
-        String token = Encode.createJWT(email);
+        String token = Encode.createJWT(user.getEmail());
         return ResponseEntity.status(HttpStatus.OK).body(token);
-
 
 
     }
 
 
-    @RequestMapping(value = "/user/cart",method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(value = "/user/cart", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public ArrayList<Cart> GetCartsOfUser(@RequestAttribute(value = "user") User user) {
         //Loghme loghme = Loghme.getInstance();
         //User user = loghme.getAppUser();
@@ -171,11 +171,9 @@ public class UserController {
     }
 
 
-
-
-    @RequestMapping(value = "/user",method = RequestMethod.POST)
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
     public void AddToWallet(@RequestParam(value = "credit") float amount,
-                            @RequestAttribute(value = "user") User user){
+                            @RequestAttribute(value = "user") User user) {
         user.AddToWallet(amount);
 
 //        Loghme loghme = Loghme.getInstance();

@@ -33,17 +33,17 @@ public class Loghme {
         if (instance == null)
             try {
                 instance = new Loghme();
-            } catch (SQLException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         return instance;
     }
 
-    private Loghme() throws SQLException {
+    private Loghme() throws Exception {
         userMapper = UserMapper.getInstance();
         restaurantMapper = RestaurantMapper.getInstance();
         foodPartyRestaurantMapper = FoodPartyRestaurantMapper.getInstance();
-        User user = new User("H", "M", "+0", "test@test.com", 2500000);
+        User user = new User("H", "M", "test@test.com","slm");
         this.AppUser = user;
         userMapper.insert(user);
     }

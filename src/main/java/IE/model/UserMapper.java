@@ -43,7 +43,7 @@ public class UserMapper extends Mapper<User, String, Integer> {
     protected String getFindStatement(String id) {
         return "SELECT " + COLUMNS +
                 " FROM " + TABLE_NAME +
-                " WHERE email = " + id + ";";
+                " WHERE email = " + '"' + id + '"' + ";";
     }
 
     @Override
@@ -56,8 +56,8 @@ public class UserMapper extends Mapper<User, String, Integer> {
                 '"' + user.getFname() + '"' + ", " +
                 '"' + user.getLname() + '"' + ", " +
                 '"' + user.getPhoneNumber() + '"' + ", " +
-                user.getWallet() + ", "+
-                '"' + user.getPassword() + '"'+
+                user.getWallet() + ", " +
+                '"' + user.getPassword() + '"' +
                 ");";
     }
 
@@ -82,7 +82,7 @@ public class UserMapper extends Mapper<User, String, Integer> {
 
     @Override
     protected String getAllStatement() {
-        return "SELECT "+ COLUMNS +" FROM " + TABLE_NAME + ";";
+        return "SELECT " + COLUMNS + " FROM " + TABLE_NAME + ";";
     }
 
     @Override
