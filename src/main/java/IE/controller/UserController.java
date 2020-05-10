@@ -146,8 +146,8 @@ public class UserController {
         JSONObject jsonObject = new JSONObject(body);
         String email = jsonObject.getString("email");
         String password = jsonObject.getString("password");
-        String firstName = jsonObject.getString("firstName");
-        String lastName = jsonObject.getString("lastName");
+        String firstName = jsonObject.getString("fname");
+        String lastName = jsonObject.getString("lname");
         //user.setPassword(Password.getSaltedHash(user.getPassword()));
         for (User value : users) {
             if (email.equals(value.getEmail())) {
